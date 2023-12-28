@@ -3,7 +3,7 @@
     <div class=" w-full h-full flex">
         <div class=" m-auto space-y-4 w-full max-w-sm">
             <div class=" flex flex-col items-start space-y-2">
-                <h1 class=" text-[#524C57] text-2xl font-Altivo font-normal">Welcome 👋🏻</h1>
+                <h1 class=" text-[#524C57] text-2xl font-Altivo font-normal">Welcome Back 👋🏻</h1>
                 <span class=" text-[#87848B] text-lg font-Inter font-normal">Please sign-in to your account</span>
             </div>
 
@@ -79,7 +79,7 @@
                  
             </div>
 
-            <div class=" w-full flex flex-col items-center space-y-8 pt-10">
+            <div class=" w-full flex flex-col items-center space-y-8 py-10">
                 <div class=" w-full border relative ">
                     <div class=" absolute w-full -top-[1.3rem] left-0 flex ">
                         <div class=" bg-white p-2 text-lg text-gray-400 font-Altivo font-normal m-auto">

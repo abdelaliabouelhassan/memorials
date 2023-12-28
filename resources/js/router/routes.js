@@ -4,10 +4,12 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 import Index from '@/components/pages/index.vue'
 import Login from '@/components/pages/auth/Login.vue'
+import Register from '@/components/pages/auth/Register.vue'
 
 const routes = [
   { path: '/', component: Index, name: 'index' },
   { path: '/login', component: Login, name: 'login' },
+  { path: '/register', component: Register, name: 'Register' },
 ]
 
 const router = createRouter({
