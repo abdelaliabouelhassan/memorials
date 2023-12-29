@@ -1,6 +1,6 @@
 <template>
   <MainLayouts>
-    <div class=" w-full h-full flex">
+    <div class=" w-full h-full flex py-4 px-4">
         <div class=" m-auto space-y-4">
            <div >
              <h1 class=" text-2xl font-Altivo text-primary font-medium">UNVERGESSLICHE MOMENTE,</h1>

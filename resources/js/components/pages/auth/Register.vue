@@ -1,6 +1,6 @@
 <template>
   <MainLayouts>
-    <div class=" w-full h-full flex">
+    <div class=" w-full h-full flex py-4 px-4">
         <div class=" m-auto space-y-4 w-full max-w-sm">
             <div class=" flex flex-col items-start space-y-2">
                 <h1 class=" text-[#524C57] text-2xl font-Altivo font-normal">Welcome  👋🏻</h1>

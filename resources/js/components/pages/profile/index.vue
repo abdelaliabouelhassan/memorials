@@ -1,6 +1,6 @@
 <template>
   <MainLayouts>
-    <div class=" w-full h-full flex flex-col items-start space-y-8">
+    <div class=" w-full h-full flex flex-col items-start space-y-8 py-8 px-4">
         <div class=" flex items-center space-x-4">
             <div class=" w-24 h-24 rounded-full bg-[#F4EFEF] p-2 shadow">
                 <div class=" w-full h-full rounded-full bg-white flex">
