@@ -93,7 +93,7 @@ const animateProgress = () => {
         } else {
           startTime.value = null; // Reset start time when animation completes
           paused.value = false;
-          alert('gg')
+          startProgress() //restart
         }
       };
 
