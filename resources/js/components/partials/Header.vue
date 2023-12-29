@@ -1,5 +1,5 @@
 <template>
-    <div class=" w-full absolute top-0 bg-white left-0 p-4">
+    <div class=" w-full absolute top-0 bg-white left-0 p-4 z-20">
         <div class=" w-full flex items-center justify-between">
             <div>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-9 h-9 text-primary">
@@ -12,12 +12,29 @@
                  </router-link>
             </div>
 
-            <button>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-9 h-9 text-primary">
+            <button @click="openMenu">
+                <svg v-if="!open" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-9 h-9 text-primary">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
                 </svg>
+                <svg v-else xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-9 h-9 text-primary">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                 </svg>
+
 
             </button>
         </div>
     </div>
+
+   
 </template>
+
+
+<script setup>
+ import { defineEmits, ref } from "vue";
+ const open = ref(false)
+ const emit = defineEmits('openMenu')
+ const openMenu = () =>{
+    open.value = !open.value
+    emit('openMenu')
+ }
+</script>
