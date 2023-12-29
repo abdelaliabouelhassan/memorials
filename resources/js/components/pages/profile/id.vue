@@ -12,13 +12,13 @@
                  </svg>
             </button>
             <div class=" w-full h-2 border-white border max-w-[15rem] rounded-md overflow-hidden">
-                <div class=" w-1/2 h-full bg-white rounded-md"></div>
+                <div class="h-full bg-white rounded-md" style="transition: width  ease-in-out;" :style="{ width: `${progress}%` }"></div>
             </div>
-            <button>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-white">
+            <button @click="togglePause">
+                <svg v-if='!paused' xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-white">
                  <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25v13.5m-7.5-13.5v13.5" />
                 </svg>
-                <svg v-if="false" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-white">
+                <svg v-else xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-white">
                  <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653Z" />
                 </svg>
             </button>
@@ -43,6 +43,65 @@
 <script setup>
 import MainLayouts from "@/components/layouts/Default.vue";
 import BottomSheet from '@/components/partials/UI/BottomSheet.vue'
-import { onMounted } from "vue";
+import { onMounted, ref } from "vue";
+
+
+const duration = ref(5000); //5s
+const progress = ref(0)
+const animationId = ref(null)
+const startTime = ref(null)
+const paused = ref(false)
+
+const startProgress = () => {
+    if (progress.value === 0 || progress.value === 100) {
+        progress.value = 0; // Reset progress if starting a new progress
+        paused.value = false
+        animateProgress();
+      }
+}
+
+const togglePause = () => {
+    if(paused.value){
+        resumeProgress()
+    }else{
+        pauseProgress()
+    }
+}
+
+const pauseProgress = () => {
+    cancelAnimationFrame(animationId.value);
+    paused.value = true
+}
+
+const resumeProgress = () => {
+    if (paused.value) {
+        paused.value = false;
+        startTime.value = performance.now() - (progress.value / 100) * duration.value;
+        animateProgress();
+      }
+}
+
+const animateProgress = () => {
+       const animate = (time) => {
+        if (!startTime.value) startTime.value = time;
+
+        const progressTime = time - startTime.value;
+        progress.value = Math.min((progressTime / duration.value) * 100, 100);
+
+        if (progressTime < duration.value && !paused.value) {
+          animationId.value = requestAnimationFrame(animate);
+        } else {
+          startTime.value = null; // Reset start time when animation completes
+          paused.value = false;
+          alert('gg')
+        }
+      };
+
+      animationId.value = requestAnimationFrame(animate);
+}
+
+onMounted(() => {
+    startProgress()
+})
 
 </script>
