@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import {requireAuth} from '../middleware/auth'
+import {Auth} from '../middleware/authpage'
 //componentes
 
 import Index from '@/components/pages/index.vue'
@@ -10,8 +11,8 @@ import ProfileId from '@/components/pages/profile/id.vue'
 
 const routes = [
   { path: '/', component: Index, name: 'index' },
-  { path: '/login', component: Login, name: 'login' },
-  { path: '/register', component: Register, name: 'register' },
+  { path: '/login', component: Login, name: 'login',beforeEnter: Auth },
+  { path: '/register', component: Register, name: 'register',beforeEnter: Auth },
   { path: '/profile', component: Profile, name: 'profile', beforeEnter: requireAuth },
   { path: '/profile/:id', component: ProfileId, name: 'profile-id' },
 ]

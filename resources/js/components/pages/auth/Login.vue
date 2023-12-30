@@ -77,7 +77,7 @@
                         </div> 
                         <label for="rememberme" class=" text-gray-400 text-lg font-Altivo cursor-pointer">Remember me</label>
                     </div>
-                    <router-link to="/" class=" text-primary text-lg font-normal font-Altivo">Forgot Password</router-link>
+                    <!-- <router-link to="/" class=" text-primary text-lg font-normal font-Altivo">Forgot Password</router-link> -->
                 </div>
 
                 <div class=" w-full py-4">
@@ -153,6 +153,7 @@ const login = () => {
     axios.post('/api/login',form.value).then((res) => {
         localStorage.setItem('token',res.data.token)
         success.value = true
+        router.push('/profile')
 
     }).catch((error) => {
         console.log(error)
@@ -175,15 +176,5 @@ const login = () => {
         loading.value = false
     })
 }
-
-
-onMounted(() => {
-     axios.get('/api/user').then((res) => {
-       console.log(res)
-
-    }).catch((err) => {
-        console.log(err)
-    })
-})
 
 </script>
