@@ -14,8 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/google/callback',[LoginController::class,'handleGoogleCallback']);
-Route::get('/social-login/{token}',function(){
-    return view('welcome');
+Route::get('/twitter/callback',[LoginController::class,'handleTwitterCallback']);
+Route::get('/facebook/callback',[LoginController::class,'handleFacebookCallback']);
+
+Route::get('/social-login/{token}',function($token){
+    return view('auth.sociallogin',compact('token'));
 })->name('social-login');
 
 

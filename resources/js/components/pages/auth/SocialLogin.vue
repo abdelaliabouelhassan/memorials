@@ -1,5 +1,5 @@
 <template>
-    
+    Redirecting...
 </template>
 
 
@@ -15,6 +15,8 @@ onMounted(() => {
         localStorage.setItem('token',token)
     }
 
-    router.push('/profile')
+    setTimeout(() => {
+        window.location.href = '/profile'
+    },1000)
 })
 </script>

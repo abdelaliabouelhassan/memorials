@@ -23,7 +23,7 @@
  }
 
  onMounted(() => {
-    getUser()
+         getUser()
  })
 
 </script>

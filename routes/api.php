@@ -25,3 +25,5 @@ Route::post('/register',[RegisterController::class,'Register']);
 Route::post('/login',[LoginController::class,'Login']);
 Route::post('/logout',[LoginController::class,'Logout']);
 Route::get('/google/auth',[LoginController::class,'redirectToGoogle']);
+Route::get('/twitter/auth',[LoginController::class,'redirectToTwitter']);
+Route::get('/facebook/auth',[LoginController::class,'redirectToFacebook']);
