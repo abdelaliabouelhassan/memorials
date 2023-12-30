@@ -39,7 +39,10 @@
  import axios from 'axios'
  import { ref } from 'vue'
  import { useRouter } from 'vue-router';
-const router = useRouter();
+ import { useStore } from "@/stores/states.js"
+
+ const store = useStore()
+ const router = useRouter();
  
  const props = defineProps(['theme'])
 
@@ -53,6 +56,7 @@ const router = useRouter();
         localStorage.removeItem('token');
         // Reset the axios Authorization header:
         axios.defaults.headers.common['Authorization'] = 'Bearer';
+        store.user = [];
         // Redirect the user to the login page:
         router.push({ name: 'login' });
     })
