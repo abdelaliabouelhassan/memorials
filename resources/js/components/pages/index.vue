@@ -16,7 +16,7 @@
             <div class=" w-full flex flex-col items-start space-y-2 pt-10">
               <button class=" uppercase text-white bg-primary rounded-md hover:scale-x-110 duration-200 w-full py-2 font-Altivo text-lg">go to shop</button>
                <router-link to="/login" class=" w-full">
-                   <button class=" uppercase bg-white border-2 border-primary text-primary rounded-md hover:scale-x-110 duration-200 w-full py-2 font-Altivo text-lg">log in</button>
+                   <button class=" uppercase bg-white border-2 border-primary text-primary rounded-md hover:scale-x-110 duration-200 w-full py-2 font-Altivo text-lg">{{store.user.email ? 'my profiles' : 'log in'}}</button>
                </router-link>
               
             </div>
@@ -29,5 +29,6 @@
 <script setup>
 import MainLayouts from "@/components/layouts/Default.vue";
 import { onMounted } from "vue";
-
+import { useStore } from "@/stores/states.js"
+const store = useStore()
 </script>

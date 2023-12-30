@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -23,5 +24,12 @@ class LoginController extends Controller
         } else {
             return response()->json(['error' => 'Unauthorised, Wrong email or password'], 401);
         }
+    }
+
+
+    public function Logout(){
+        Auth::logout();
+
+        return response()->json(['message' => 'log out'], 200);
     }
 }

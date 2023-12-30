@@ -15,6 +15,14 @@
             </div>
            
           </div>
+
+          <div class=" w-full p-4 absolute bottom-14">
+            <button @click="logOut" class=" w-full bg-primary rounded-full h-12 flex hover:scale-y-110 duration-200">
+            <svg xmlns="http://www.w3.org/2000/svg"  fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 m-auto text-white h-10">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15M12 9l-3 3m0 0 3 3m-3-3h12.75" />
+           </svg>
+          </button>
+          </div>
        </div>
        <div class=" w-full h-full  overflow-y-auto">
          <slot />
@@ -28,12 +36,25 @@
 <script setup>
  import Header from '@/components/partials/Header.vue'
  import Footer from '@/components/partials/Footer.vue'
+ import axios from 'axios'
  import { ref } from 'vue'
+ import { useRouter } from 'vue-router';
+const router = useRouter();
  
  const props = defineProps(['theme'])
 
- const open = ref(false)
+  const open = ref(false)
   const openMenu = () => {
     open.value = !open.value
+  }
+
+  const logOut = () => {
+    axios.post('/api/logout').then((res) => {
+        localStorage.removeItem('token');
+        // Reset the axios Authorization header:
+        axios.defaults.headers.common['Authorization'] = 'Bearer';
+        // Redirect the user to the login page:
+        router.push({ name: 'login' });
+    })
   }
 </script>

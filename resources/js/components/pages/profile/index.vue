@@ -1,14 +1,15 @@
 <template>
   <MainLayouts>
-    <div class=" w-full h-full flex flex-col items-start space-y-8 py-8 px-4">
+    <div class=" w-full h-full flex flex-col items-start space-y-8 py-8 px-4 overflow-hidden">
         <div class=" flex items-center space-x-4">
             <div class=" w-24 h-24 rounded-full bg-[#F4EFEF] p-2 shadow">
-                <div class=" w-full h-full rounded-full bg-white flex">
-                    <span class=" text-primary text-4xl font-Altivo font-medium m-auto">AC</span>
+                <div class=" w-full h-full rounded-full bg-white overflow-hidden flex">
+                    <!-- <span class=" text-primary text-4xl font-Altivo font-medium m-auto">AC</span> -->
+                    <img :src="'https://api.dicebear.com/6.x/initials/svg?seed=' + store.user.first_name + ' ' + store.user.last_name" class=" w-full h-full" alt="">
                 </div>
             </div>
             <div class=" flex flex-col items-start">
-                <span class=" text-primary text-2xl font-medium font-Inter"> Account@gmail.com</span>
+                <span class=" text-primary text-xl font-medium font-Inter">{{store.user.email}}</span>
                 <span class=" text-primary font-Altivo text-lg font-normal">2 SEELENSTEINE</span>
             </div>
         </div>
@@ -46,5 +47,7 @@
 <script setup>
 import MainLayouts from "@/components/layouts/Default.vue";
 import { onMounted } from "vue";
+import { useStore } from "@/stores/states.js"
+const store = useStore()
 
 </script>
