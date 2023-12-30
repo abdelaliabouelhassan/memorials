@@ -7,24 +7,38 @@
                 <span class=" text-[#87848B] text-lg font-Inter font-normal">Please sign-in to your account</span>
             </div>
 
+             <div 
+                v-if="unauthorized != false"
+                class="relative block w-full p-4 mb-4 text-base leading-5 text-white bg-red-500 rounded-lg opacity-100 font-regular">
+                {{unauthorized}}
+            </div>
+
             <div class=" w-full space-y-4 pt-14 ">
                
+               <div class=" flex flex-col items-start">
+                  <span class=" text-red-500 font-Altivo text-base" v-if="errors.email">{{errors.email[0]}}</span>
                 <div class="relative w-full">
                     <input
                     type="email"
+                     :class="{'border-2 border-red-500':errors.email}"
+                     v-model="form.email"
                     class="peer outline-none w-full h-11 bg-transparent text-blue-gray-700 font-sans font-normal outline outline-0 focus:outline-0 disabled:bg-blue-gray-50 disabled:border-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 border focus:border-2 focus:border-t-transparent text-sm px-3 py-2.5 rounded-[7px] border-blue-gray-200 focus:border-gray-900"
                     placeholder="" id="email" name="password" /><label for="email"
                     class="flex w-full h-full select-none pointer-events-none absolute left-0 font-normal !overflow-visible truncate peer-placeholder-shown:text-blue-gray-500 leading-tight peer-focus:leading-tight peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500 transition-all -top-1.5 peer-placeholder-shown:text-sm text-[11px] peer-focus:text-[11px] before:content[' '] before:block before:box-border before:w-2.5 before:h-1.5 before:mt-[6.5px] before:mr-1 peer-placeholder-shown:before:border-transparent before:rounded-tl-md before:border-t peer-focus:before:border-t-2 before:border-l peer-focus:before:border-l-2 before:pointer-events-none before:transition-all peer-disabled:before:border-transparent after:content[' '] after:block after:flex-grow after:box-border after:w-2.5 after:h-1.5 after:mt-[6.5px] after:ml-1 peer-placeholder-shown:after:border-transparent after:rounded-tr-md after:border-t peer-focus:after:border-t-2 after:border-r peer-focus:after:border-r-2 after:pointer-events-none after:transition-all peer-disabled:after:border-transparent peer-placeholder-shown:leading-[3.75] text-gray-500 peer-focus:text-gray-900 before:border-blue-gray-200 peer-focus:before:!border-gray-900 after:border-blue-gray-200 peer-focus:after:!border-gray-900">
                         E-mail
                     </label>
+                </div>  
+               </div>
 
                 
-           
-                </div>  
 
-                <div class="relative w-full">
+              <div class=" flex flex-col items-start">
+                  <span class=" text-red-500 font-Altivo text-base" v-if="errors.password">{{errors.password[0]}}</span>
+                  <div class="relative w-full">
                     <input
                     type="password"
+                     :class="{'border-2 border-red-500':errors.password}"
+                      v-model="form.password"
                     class="peer outline-none w-full h-11 bg-transparent text-blue-gray-700 font-sans font-normal outline outline-0 focus:outline-0 disabled:bg-blue-gray-50 disabled:border-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 border focus:border-2 focus:border-t-transparent text-sm px-3 py-2.5 rounded-[7px] border-blue-gray-200 focus:border-gray-900"
                     placeholder="" id="password" name="password" /><label for="password"
                     class="flex w-full h-full select-none pointer-events-none absolute left-0 font-normal !overflow-visible truncate peer-placeholder-shown:text-blue-gray-500 leading-tight peer-focus:leading-tight peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500 transition-all -top-1.5 peer-placeholder-shown:text-sm text-[11px] peer-focus:text-[11px] before:content[' '] before:block before:box-border before:w-2.5 before:h-1.5 before:mt-[6.5px] before:mr-1 peer-placeholder-shown:before:border-transparent before:rounded-tl-md before:border-t peer-focus:before:border-t-2 before:border-l peer-focus:before:border-l-2 before:pointer-events-none before:transition-all peer-disabled:before:border-transparent after:content[' '] after:block after:flex-grow after:box-border after:w-2.5 after:h-1.5 after:mt-[6.5px] after:ml-1 peer-placeholder-shown:after:border-transparent after:rounded-tr-md after:border-t peer-focus:after:border-t-2 after:border-r peer-focus:after:border-r-2 after:pointer-events-none after:transition-all peer-disabled:after:border-transparent peer-placeholder-shown:leading-[3.75] text-gray-500 peer-focus:text-gray-900 before:border-blue-gray-200 peer-focus:before:!border-gray-900 after:border-blue-gray-200 peer-focus:after:!border-gray-900">
@@ -40,12 +54,14 @@
                     </button>
                   </div>
                 </div>
+              </div>
 
                 <div class=" w-full flex items-center justify-between">
                     <div class=" flex items-center ">
                         <div class="inline-flex items-center">
                         <label class="relative flex items-center pr-3 rounded-full cursor-pointer" htmlFor="checkbox">
                             <input type="checkbox" name="rememberme"
+                             v-model="form.rememberme"
                             class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-md border border-gray-400 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-primary checked:bg-primary checked:before:bg-primary "
                             id="rememberme"  />
                             <span
@@ -65,7 +81,7 @@
                 </div>
 
                 <div class=" w-full py-4">
-                      <button class=" uppercase text-white bg-primary rounded-md hover:scale-x-110 duration-200 w-full py-2 font-Altivo text-lg">login</button>
+                      <button :disabled='loading' @click="login" class=" uppercase text-white bg-primary rounded-md hover:scale-x-110 duration-200 w-full py-2 font-Altivo text-lg">login</button>
                 </div>
 
                 <div class="  w-full flex">
@@ -114,6 +130,60 @@
 
 <script setup>
 import MainLayouts from "@/components/layouts/Default.vue";
-import { onMounted } from "vue";
+import { onMounted,ref } from "vue";
+import { useRouter } from 'vue-router';
+import axios from 'axios'
+
+const router = useRouter();
+const form = ref({
+    email:'',
+    password:'',
+    rememberme:false
+})
+const success = ref(false)
+const errors = ref([])
+const loading = ref(false)
+const unauthorized = ref(false)
+const login = () => {
+    if(!loading) return;
+    errors.value = []
+    success.value = false
+    loading.value = true
+    unauthorized.value = false
+    axios.post('/api/login',form.value).then((res) => {
+        localStorage.setItem('token',res.data.token)
+        success.value = true
+
+    }).catch((error) => {
+        console.log(error)
+        success.value = false
+         if (error.response && error.response.status === 422) {
+            // 422 Unprocessable Entity error
+            errors.value = error.response.data.errors;
+            console.log('Validation errors:', errors.value);
+        
+           } 
+           else if(error.response && error.response.status === 401){
+            //401 Unauthorized
+            unauthorized.value =  error.response.data.error
+           }
+           else {
+                // Handle other types of errors here
+                console.log('Other error:', error.message);
+            }
+    }).finally(() => {
+        loading.value = false
+    })
+}
+
+
+onMounted(() => {
+     axios.get('/api/user').then((res) => {
+       console.log(res)
+
+    }).catch((err) => {
+        console.log(err)
+    })
+})
 
 </script>
