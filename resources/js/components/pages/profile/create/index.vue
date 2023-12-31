@@ -42,7 +42,9 @@
 
 
        <div class=" w-full">
-          <Details v-show=" step == 0" />
+          <Details v-if=" step == 0" />
+          <Media v-else-if="step == 1" />
+          <Accesses v-else-if="step == 2" />
        </div>
     </div>
   </MainLayouts>
@@ -52,6 +54,8 @@
 <script setup>
 import MainLayouts from "@/components/layouts/Default.vue";
 import Details from '@/components/pages/profile/create/tabs/Details.vue'
+import Media from '@/components/pages/profile/create/tabs/Media.vue'
+import Accesses from '@/components/pages/profile/create/tabs/Accesses.vue'
 import { onMounted, ref } from "vue";
 import { useStore } from "@/stores/states.js"
 const store = useStore()
