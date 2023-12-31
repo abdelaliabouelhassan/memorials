@@ -61,6 +61,7 @@ class LoginController extends Controller
 
         if(!$checkuser){
             $checkuser = User::create([
+                'name' => $user->name,
                 'first_name' => $user->user['given_name'],
                 'last_name' => $user->user['family_name'],
                 'email' => $user->email,
@@ -100,6 +101,7 @@ class LoginController extends Controller
 
         if(!$checkuser){
             $checkuser = User::create([
+                'name' => $user->name,
                 'first_name' => $firstName,
                 'last_name' => $lastName,
                 'email' => $user->email,
@@ -138,6 +140,7 @@ class LoginController extends Controller
         $lastName = end($nameParts);
         if(!$checkuser){
             $checkuser = User::create([
+                'name' => $user->name,
                 'first_name' => $firstName,
                 'last_name' => $lastName,
                 'email' => $user->email,

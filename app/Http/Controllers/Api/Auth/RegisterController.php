@@ -23,6 +23,7 @@ class RegisterController extends Controller
        try {
              $referral_code = Str::random(6) . '' . time() . Str::random(6);
              $user = User::create([
+                'name' =>  $request->first_name . ' ' . $request->last_name,
                 'first_name' => $request->first_name,
                 'last_name' => $request->last_name,
                 'email' => $request->email,

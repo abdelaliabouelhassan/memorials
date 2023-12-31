@@ -9,8 +9,9 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
-
-class User extends Authenticatable
+use Filament\Models\Contracts\FilamentUser;
+use Filament\Panel;
+class User extends Authenticatable  implements FilamentUser
 {
     use HasApiTokens, HasFactory, Notifiable, HasSlug;
 
@@ -21,6 +22,10 @@ class User extends Authenticatable
      */
     protected $guarded = [];
 
+    public function canAccessPanel(Panel $panel): bool
+    {
+        return $this->role === 'admin';
+    }
 
     public function getSlugOptions() : SlugOptions
     {
