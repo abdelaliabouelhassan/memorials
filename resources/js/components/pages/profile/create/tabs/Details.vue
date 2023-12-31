@@ -2,11 +2,12 @@
     <div class=" w-full space-y-8">
 
         <div class=" w-full flex  flex-col items-center space-y-2">
-                <input type="file" hidden ref="profileImage">
+                <input  accept="image/*" type="file" @change="getImage" hidden ref="profileImage" >
                 <div class=" w-28 h-28 overflow-hidden rounded-full flex ring ring-gray-300 cursor-pointer m-auto" @click="profileImage.click">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 m-auto text-primary">
+                    <svg v-if="store.profile.step1.image == ''" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 m-auto text-primary">
                        <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
                     </svg>
+                    <img v-else :src="store.profile.step1.image" alt="" class=" w-full h-full object-cover">
 
                 </div>
                 <span class=" text-sm font-Altivo text-primary">Profile Image</span>
@@ -16,6 +17,7 @@
                   <!-- <span class=" text-red-500 font-Altivo text-base" v-if="errors.password">{{errors.password[0]}}</span> -->
                   <div class="relative w-full">
                     <input
+                    v-model="store.profile.step1.fullname"
                     type="text" 
                     class="peer outline-none w-full h-11 bg-transparent text-blue-gray-700 font-sans font-normal outline outline-0 focus:outline-0 disabled:bg-blue-gray-50 disabled:border-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 border focus:border-2 focus:border-t-transparent text-sm px-3 py-2.5 rounded-[7px] border-blue-gray-200 focus:border-gray-900"
                     placeholder="" id="fullname" name="fullname" /><label for="fullname"
@@ -28,6 +30,7 @@
                   <!-- <span class=" text-red-500 font-Altivo text-base" v-if="errors.password">{{errors.password[0]}}</span> -->
                   <div class="relative w-full">
                     <input
+                    v-model="store.profile.step1.residence"
                     type="text" 
                     class="peer outline-none w-full h-11 bg-transparent text-blue-gray-700 font-sans font-normal outline outline-0 focus:outline-0 disabled:bg-blue-gray-50 disabled:border-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 border focus:border-2 focus:border-t-transparent text-sm px-3 py-2.5 rounded-[7px] border-blue-gray-200 focus:border-gray-900"
                     placeholder="" id="residence" name="residence" /><label for="residence"
@@ -40,6 +43,7 @@
                   <!-- <span class=" text-red-500 font-Altivo text-base" v-if="errors.password">{{errors.password[0]}}</span> -->
                   <div class="relative h-11 w-full min-w-[200px]">
                         <select
+                            v-model="store.profile.step1.religious"
                             class="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 empty:!bg-gray-900 focus:border-2 focus:border-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50">
                            <option value=""></option>
                             <option value="Islam">Islam</option>
@@ -58,7 +62,7 @@
              <div class=" flex flex-col items-start">
                   <!-- <span class=" text-red-500 font-Altivo text-base" v-if="errors.password">{{errors.password[0]}}</span> -->
                 <div class="relative h-10 w-full min-w-[200px]">
-                    <flat-pickr placeholder='' v-model="date"  class="date-picker peer h-full w-full rounded-[7px] border border-blue-gray-200  bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"/>
+                    <flat-pickr  placeholder='' v-model="store.profile.step1.birthday" class="date-picker peer h-full w-full rounded-[7px] border border-blue-gray-200  bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"/>
               
                     <label class="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none !overflow-visible truncate text-[11px] font-normal leading-tight text-gray-500 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-gray-900 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:!border-gray-900 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:!border-gray-900 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
                          Date of Birthday
@@ -68,7 +72,7 @@
              <div class=" flex flex-col items-start">
                   <!-- <span class=" text-red-500 font-Altivo text-base" v-if="errors.password">{{errors.password[0]}}</span> -->
                    <div class="relative h-10 w-full min-w-[200px]">
-                    <flat-pickr placeholder='' v-model="date"  class="date-picker peer h-full w-full rounded-[7px] border border-blue-gray-200  bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"/>
+                    <flat-pickr placeholder='' v-model="store.profile.step1.death"  class="date-picker peer h-full w-full rounded-[7px] border border-blue-gray-200  bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"/>
               
                     <label class="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none !overflow-visible truncate text-[11px] font-normal leading-tight text-gray-500 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-gray-900 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:!border-gray-900 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:!border-gray-900 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
                           Date of Death
@@ -80,6 +84,7 @@
                   <!-- <span class=" text-red-500 font-Altivo text-base" v-if="errors.password">{{errors.password[0]}}</span> -->
                   <div class="relative w-full">
                     <input
+                    v-model="store.profile.step1.profession" 
                     type="text" 
                     class="peer outline-none w-full h-11 bg-transparent text-blue-gray-700 font-sans font-normal outline outline-0 focus:outline-0 disabled:bg-blue-gray-50 disabled:border-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 border focus:border-2 focus:border-t-transparent text-sm px-3 py-2.5 rounded-[7px] border-blue-gray-200 focus:border-gray-900"
                     placeholder="" id="profession" name="profession" /><label for="profession"
@@ -93,6 +98,7 @@
                   <div class="w-full">
                         <div class="relative w-full min-w-[200px]">
                             <textarea
+                            v-model="store.profile.step1.miscellaneous" 
                             class="peer h-full min-h-[100px] w-full resize-none rounded-[7px] border border-blue-gray-200  bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-gray-900 focus:border-t-transparent focus:outline-0 disabled:resize-none disabled:border-0 disabled:bg-gray-50"
                             placeholder=" "></textarea>
                             <label
@@ -107,6 +113,7 @@
                   <div class="w-full">
                         <div class="relative w-full min-w-[200px]">
                             <textarea
+                            v-model="store.profile.step1.description" 
                             class="peer h-full min-h-[100px] w-full resize-none rounded-[7px] border border-blue-gray-200  bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-gray-900 focus:border-t-transparent focus:outline-0 disabled:resize-none disabled:border-0 disabled:bg-blue-gray-50"
                             placeholder=" "></textarea>
                             <label
@@ -116,7 +123,7 @@
                         </div>
                     </div>
         </div>
-        <button class=" uppercase text-white bg-primary rounded-md hover:scale-y-110 duration-200 w-full py-2 font-Altivo text-lg">Next</button>
+        <button @click="Next" class=" uppercase text-white bg-primary rounded-md hover:scale-y-110 duration-200 w-full py-2 font-Altivo text-lg">Next</button>
     </div>
 </template>
 
@@ -125,6 +132,49 @@
 import { onMounted, ref } from "vue";
 import flatPickr from 'vue-flatpickr-component';
 import 'flatpickr/dist/flatpickr.css';
+import { useStore } from "@/stores/states.js"
+
+const store = useStore();
+
 
 const profileImage = ref(null)
+
+
+const getImage = (e) => {
+  const fileInput = e.target;
+
+  // Check if a file is selected
+  if (fileInput.files.length > 0) {
+    const selectedFile = fileInput.files[0];
+
+    // Validate file type
+    const allowedTypes = ['image/png', 'image/jpeg', 'image/gif'];
+
+    if (allowedTypes.includes(selectedFile.type)) {
+
+      // Read the selected file as base64
+      const reader = new FileReader();
+
+      reader.onload = (event) => {
+        const base64String = event.target.result;
+        // Now you can use the base64String as needed
+        store.profile.step1.image = base64String
+      };
+
+      reader.readAsDataURL(selectedFile);
+    } else {
+      // Invalid file type
+      alert('Invalid file type. Please select a valid image file (png, jpg, gif).');
+      // Reset the file input to clear the selection
+      fileInput.value = '';
+    }
+  }
+};
+
+
+const Next = () => {
+    console.log(store.profile.step1)
+}
+
+
 </script>

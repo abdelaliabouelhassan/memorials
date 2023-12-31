@@ -1,6 +1,6 @@
 <template>
   <MainLayouts>
-    <div class=" w-full h-full flex flex-col items-start space-y-8 py-8 px-4 overflow-hidden">
+    <div class=" w-full h-full flex flex-col items-start space-y-8 py-8 px-4">
        <div class=" w-full">
         <div class=" w-full">
             <div class="relative right-0">
@@ -41,7 +41,7 @@
        </div>
 
 
-       <div class=" w-full">
+       <div class=" w-full pb-4">
           <Details v-if=" step == 0" />
           <Media v-else-if="step == 1" />
           <Accesses v-else-if="step == 2" />
