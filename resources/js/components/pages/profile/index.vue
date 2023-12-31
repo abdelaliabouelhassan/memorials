@@ -14,6 +14,12 @@
             </div>
         </div>
 
+        <div class=" w-full px-4">
+             <router-link to="/profile/create" class=" w-full">
+                   <button class=" uppercase bg-white border-2 border-primary text-primary rounded-md hover:scale-x-110 duration-200 w-full py-2 font-Altivo text-lg">Add new Profile</button>
+              </router-link>
+        </div>
+
         <div class=" w-full flex flex-col items-start space-y-4">
             <div class=" w-full bg-[#F2F2F1] rounded-md flex items-center justify-between px-5 shadow py-7">
                 <div class=" flex items-center space-x-2">

@@ -8,6 +8,7 @@ import Login from '@/components/pages/auth/Login.vue'
 import Register from '@/components/pages/auth/Register.vue'
 import Profile from '@/components/pages/profile/index.vue'
 import ProfileId from '@/components/pages/profile/id.vue'
+import CreateProfile from '@/components/pages/profile/create/index.vue'
 
 const routes = [
   { path: '/', component: Index, name: 'index' },
@@ -15,6 +16,7 @@ const routes = [
   { path: '/register', component: Register, name: 'register',beforeEnter: Auth },
   { path: '/profile', component: Profile, name: 'profile', beforeEnter: requireAuth },
   { path: '/profile/:id', component: ProfileId, name: 'profile-id' },
+  { path: '/profile/create', component: CreateProfile, name: 'profile-create' },
  
 ]
 
