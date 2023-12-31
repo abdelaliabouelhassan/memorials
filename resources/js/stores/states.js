@@ -19,6 +19,10 @@ export const useStore = defineStore('states', {
                 },
                 step2:{
                     images:[]
+                },
+                step3:{
+                    password:'',
+                    private:''
                 }
             }
         } 

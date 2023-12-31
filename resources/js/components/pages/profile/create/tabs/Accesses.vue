@@ -5,7 +5,7 @@
             <label class="block mb-2 text-base font-medium text-primary " for="file_input">Make it Private</label>
             <div class="inline-flex items-center">
                 <div class="relative inline-block w-8 h-4 rounded-full cursor-pointer">
-                <input  id="switch-6" type="checkbox"
+                <input v-model="store.profile.step3.private" id="switch-6" type="checkbox"
                     class="absolute w-8 h-4 transition-colors duration-300 rounded-full appearance-none cursor-pointer peer bg-gray-300 checked:bg-primary peer-checked:border-primary peer-checked:before:bg-primary" />
                 <label htmlFor="switch-6"
                     class="before:content[''] absolute top-2/4 -left-1 h-5 w-5 -translate-y-2/4 cursor-pointer rounded-full border border-blue-gray-100 bg-white shadow-md transition-all duration-300 before:absolute before:top-2/4 before:left-2/4 before:block before:h-10 before:w-10 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity hover:before:opacity-10 peer-checked:translate-x-full peer-checked:border-indigo-500 peer-checked:before:bg-indigo-500">
@@ -21,6 +21,7 @@
                   <!-- <span class=" text-red-500 font-Altivo text-base" v-if="errors.password">{{errors.password[0]}}</span> -->
                   <div class="relative w-full">
                     <input
+                    v-model="store.profile.step3.password"
                     type="password" 
                     class="peer outline-none w-full h-11 bg-transparent text-blue-gray-700 font-sans font-normal outline outline-0 focus:outline-0 disabled:bg-blue-gray-50 disabled:border-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 border focus:border-2 focus:border-t-transparent text-sm px-3 py-2.5 rounded-[7px] border-blue-gray-200 focus:border-gray-900"
                     placeholder="" id="fullname" name="fullname" /><label for="fullname"
@@ -40,4 +41,9 @@
 import { onMounted } from "vue";
 import flatPickr from "vue-flatpickr-component";
 import "flatpickr/dist/flatpickr.css";
+
+import { useStore } from "@/stores/states.js"
+
+const store = useStore();
+
 </script>
