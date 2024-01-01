@@ -13,6 +13,9 @@ use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
+use Filament\Infolists\Components\TextEntry;
+use Filament\Infolists\Components\ViewEntry;
+use Filament\Infolists\Infolist;
 use Filament\Resources\Pages\CreateRecord;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -58,19 +61,20 @@ class QrCodeResource extends Resource
     public static function form(Form $form): Form
     {
         return $form
-        ->schema([
-            Group::make()->schema([
-                Section::make('Assigned or Unassigned')->schema([
-                    Select::make('user_id')->label('assign user')
-                    ->searchable()
-                    ->options([null => 'Unassigned'] + User::all()->pluck('email', 'id')->toArray())
-                    ->native(false)
-                ])->columns(1)
-             ])->columnSpan('full')
-                ]);
+        ->schema([]);
       
      
     }
+
+    public static function infolist(Infolist $infolist): Infolist
+{
+    return $infolist
+        ->schema([
+            ViewEntry::make('code')->view('infolists.components.qr-code')
+          
+                ->columnSpanFull(),
+        ]);
+}
 
     public static function table(Table $table): Table
     {
@@ -86,6 +90,7 @@ class QrCodeResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\ViewAction::make(),
                 
             ])
             ->bulkActions([
@@ -108,6 +113,8 @@ class QrCodeResource extends Resource
             'index' => Pages\ListQrCodes::route('/'),
             'create' => Pages\CreateQrCode::route('/create'),
             'edit' => Pages\EditQrCode::route('/{record}/edit'),
+            'view' => Pages\ViewQrCode::route('/{record}'),
+            'edit' => Pages\EditQrCode::route('/{record}/view'),
         ];
     }
 }
