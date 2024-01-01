@@ -82,7 +82,8 @@ class QrCodeResource extends Resource
             ->columns([
                 ViewColumn::make('code')->view('tables.columns.qr-code-column')->label('QR Code'),
                 ViewColumn::make('user_id')->view('tables.columns.assigne-user')->label('is Assigned'),
-                TextColumn::make('user.email')->label('Email')->searchable()
+                TextColumn::make('user.email')->label('Email')->searchable(),
+                TextColumn::make('profile.fullname')->label('Profile Name')->searchable()
                
             ])
             ->filters([

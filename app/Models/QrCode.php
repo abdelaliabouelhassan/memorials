@@ -15,4 +15,8 @@ class QrCode extends Model
     public function user(){
         return $this->BelongsTo(User::class);
     }
+
+    public function profile(){
+        return $this->hasOne(Profile::class,'qrcode_id');
+    }
 }
