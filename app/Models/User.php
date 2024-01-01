@@ -11,6 +11,8 @@ use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Panel;
+use Illuminate\Support\Str;
+
 class User extends Authenticatable  implements FilamentUser
 {
     use HasApiTokens, HasFactory, Notifiable, HasSlug;
@@ -53,4 +55,18 @@ class User extends Authenticatable  implements FilamentUser
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($user) {
+            // Set the name based on first name and last name
+            $user->name = $user->first_name . ' ' . $user->last_name;
+            $referral_code = Str::random(6) . '' . time() . Str::random(6);
+            // Generate a referral code
+            $user->referral_code = $referral_code;
+        });
+    }
 }
