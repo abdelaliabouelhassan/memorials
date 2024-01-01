@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\Auth\LoginController;
 use App\Http\Controllers\Api\Auth\RegisterController;
+use App\Http\Controllers\Api\ProfilesController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -27,3 +28,9 @@ Route::post('/logout',[LoginController::class,'Logout']);
 Route::get('/google/auth',[LoginController::class,'redirectToGoogle']);
 Route::get('/twitter/auth',[LoginController::class,'redirectToTwitter']);
 Route::get('/facebook/auth',[LoginController::class,'redirectToFacebook']);
+
+
+Route::group(['middleware' => 'auth:sanctum'], function () {
+    // Your routes go here
+    Route::get('/get-profiles', [ProfilesController::class,'getProfiles']);
+});

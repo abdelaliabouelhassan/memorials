@@ -16,7 +16,7 @@ const routes = [
   { path: '/register', component: Register, name: 'register',beforeEnter: Auth },
   { path: '/profile', component: Profile, name: 'profile', beforeEnter: requireAuth },
   { path: '/profile/:id', component: ProfileId, name: 'profile-id' },
-  { path: '/profile/create', component: CreateProfile, name: 'profile-create' },
+  { path: '/profile/:id/edit', component: CreateProfile, name: 'profile-create' },
  
 ]
 
