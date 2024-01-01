@@ -82,6 +82,7 @@ class QrCodeResource extends Resource
             ->columns([
                 ViewColumn::make('code')->view('tables.columns.qr-code-column')->label('QR Code'),
                 ViewColumn::make('user_id')->view('tables.columns.assigne-user')->label('is Assigned'),
+                TextColumn::make('user.email')->label('Email')->searchable()
                
             ])
             ->filters([
@@ -95,7 +96,7 @@ class QrCodeResource extends Resource
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                    // Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ]);
     }
