@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\QrCodeResource\Pages;
 
 use App\Filament\Resources\QrCodeResource;
+use App\Models\Profile;
 use App\Models\QrCode;
 use App\Models\User;
 use Filament\Actions\Action;
@@ -45,7 +46,8 @@ class EditQrCode extends Page implements HasForms
                 Group::make()->schema([
                     Section::make('Assign  or UnAssign User')->schema([
                        Select::make('user_id')->label('Assign User')
-                       ->options([null => 'UnAssign'] + User::all()->pluck('name', 'id')->toArray())
+                       ->searchable()
+                       ->options([null => 'UnAssign'] + User::all()->pluck('email', 'id')->toArray())
                        ->native(false)
                     ])->columns(1)
                  ])->columnSpan('full')
@@ -67,9 +69,39 @@ class EditQrCode extends Page implements HasForms
        
         try {
             $data = $this->form->getState();
-            QrCode::where('id',$this->record )->update([
-                'user_id' =>$data['user_id']
-            ]);
+            $user_id = $data['user_id'];
+
+            //
+
+         
+            $qrCode = QrCode::where('id',$this->record)->first();
+
+            //check if user have already profile and remove qrcode_id to null
+            $oldprofile =  Profile::where('user_id',$qrCode->user_id)->where('qrcode_id',$qrCode->id)->first();
+
+            if($oldprofile){
+                $oldprofile->qrcode_id = null;
+                $oldprofile->save(); 
+            }
+
+            //new profile
+
+            $newProfile = Profile::where('user_id',$user_id)->where('qrcode_id',null)->first();
+            if($newProfile){
+                $newProfile->qrcode_id = $qrCode->id;
+                $newProfile->save();
+            }else{
+                if($user_id != null){
+                    Profile::create([
+                        'user_id' => $user_id,
+                        'qrcode_id' => $qrCode->id
+                    ]);
+                }
+               
+            }
+
+            $qrCode->user_id = $user_id;
+            $qrCode->save();
             
         } catch (Halt $exception) {
             return;
