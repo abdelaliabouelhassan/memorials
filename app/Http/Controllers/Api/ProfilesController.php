@@ -50,7 +50,7 @@ class ProfilesController extends Controller
                 $oldImage = $profile->image;
                 $profile->image  =  $this->uploadImage('uploads/profiles/', $request->image, $oldImage);
             }
-
+            $profile->step_one_completed = true;
             $profile->save();
         } else {
             return abort(404);
@@ -79,7 +79,15 @@ class ProfilesController extends Controller
 
             // Define the path where you want to store the file
             $filePath = $path . $filename;
-            $fileContents = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $base64Data));
+            if($this->getMediaType($ext) == 'image'){
+                $fileContents = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $base64Data));
+            }else if('video'){
+                $fileContents = base64_decode(preg_replace('#^data:video/\w+;base64,#i', '', $base64Data));
+            }else{
+                throw new Exception('Unable to determine file extension.');
+            }
+           
+           
             // Save the file using file_put_contents
             file_put_contents($filePath, $fileContents);
             return '/' . $filePath;
@@ -88,27 +96,41 @@ class ProfilesController extends Controller
         }
     }
 
+    private function getMediaType($extension)
+    {
+        $imageExtensions = ['jpg', 'jpeg', 'png', 'gif', 'bmp'];
+        $videoExtensions = ['mp4', 'avi', 'mkv', 'mov', 'wmv'];
+
+        if (in_array(strtolower($extension), $imageExtensions)) {
+            return 'image';
+        } elseif (in_array(strtolower($extension), $videoExtensions)) {
+            return 'video';
+        } else {
+            return 'unknown';
+        }
+    }
+
 
     public function ProfileMediaStore(Request $request, $id)
     {
-
-
 
         $profile =  Profile::findOrFail($id);
         $files = $request->images;
         if ($profile->user_id == auth('sanctum')->id()) {
             foreach ($files as $file) {
-                $media = Media::where('path', $file['src'])->first();
-                if(!$media){
+                
+                if (strlen($file['src']) > 50) {
                     $media = new Media();
                     $media->path = $this->uploadImage('uploads/media/', $file['src']);
                     $media->type = $file['type'];
                     $media->profile_id = $id;
                     $media->save();
+                    $profile->step_two_completed = true;
                 }
                 
             }
-            return response()->json(['message' => 'Step one saved successfully']);
+            $profile->save();
+            return response()->json(['message' => 'Step two saved successfully']);
         }
 
         return abort(404);
@@ -116,7 +138,7 @@ class ProfilesController extends Controller
 
     public function ProfileMediaDelete(Request $request, $id)
     {
-       
+
         $profile =  Profile::findOrFail($id);
 
         if ($profile->user_id == auth('sanctum')->id()) {
@@ -129,18 +151,32 @@ class ProfilesController extends Controller
                 $path = ltrim($path, '/');
                 if (file_exists($path)) {
                     unlink($path);
-                    
                 }
                 $media->delete();
-                
+            }
+
+            if(Media::where('profile_id', $id)->count() == 0){
+                $profile->step_two_completed = false;
+                $profile->save();
             }
 
 
-
-
-            return response()->json(['message' => 'Step one saved successfully']);
+            return response()->json(['message' => 'Media Deleted successfully']);
         }
 
+        return abort(404);
+    }
+
+    public function ProfileAccsessStore(Request $request, $id)
+    {
+        $profile =  Profile::findOrFail($id);
+
+        if ($profile->user_id == auth('sanctum')->id()) {
+            $profile->private = $request->private;
+            $profile->password = $request->password;
+            $profile->save();
+            return response()->json(['message' => 'saved successfully']);
+        }
         return abort(404);
     }
 

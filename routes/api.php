@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
@@ -36,6 +38,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post('/profile/details/{id}/store', [ProfilesController::class,'ProfileDetailsStore']);
     Route::post('/profile/details/{id}/media', [ProfilesController::class,'ProfileMediaStore']);
     Route::post('/profile/{id}/media/delete', [ProfilesController::class,'ProfileMediaDelete']);
+    Route::post('/profile/{id}/access/store', [ProfilesController::class,'ProfileAccsessStore']);
     Route::get('/profile/{id}/details', [ProfilesController::class,'ProfileDetails']);
     Route::get('/profile/{id}/media', [ProfilesController::class,'ProfileMedia']);
 });

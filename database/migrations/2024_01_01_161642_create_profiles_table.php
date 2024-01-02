@@ -26,6 +26,8 @@ return new class extends Migration
             $table->longText('description')->nullable();
             $table->string('password')->nullable();
             $table->boolean('private')->default(false)->nullable();
+            $table->boolean('step_one_completed')->default(false)->nullable();
+            $table->boolean('step_two_completed')->default(false)->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')

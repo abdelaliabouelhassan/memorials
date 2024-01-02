@@ -43,7 +43,7 @@
 
        <div class=" w-full pb-4">
           <Details v-if=" step == 0" @next='setActive(1)' />
-          <Media v-else-if="step == 1" />
+          <Media v-else-if="step == 1" @next='setActive(2)'/>
           <Accesses v-else-if="step == 2" />
        </div>
     </div>

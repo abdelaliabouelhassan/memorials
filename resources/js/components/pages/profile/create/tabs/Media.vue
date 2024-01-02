@@ -112,12 +112,12 @@ const RemoveFile = (item,index) => {
 
 
 const Next = () => {
-    if(!loading) return;
+    if(!loading || store.profile.step2.images.length == 0) return;
     loading.value = true
     errors.value = []
     axios.post('/api/profile/details/'+ route.params.id +'/media',store.profile.step2).then((res) => {
         console.log(res)
-      //  emit('next')
+        emit('next')
     }).catch((error) => {
          if (error.response && error.response.status === 422) {
             // 422 Unprocessable Entity error
