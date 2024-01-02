@@ -3,7 +3,7 @@
       <div class=" w-full">
 
         <label class="block mb-2 text-sm font-medium text-primary  " for="file_input">Upload files</label>
-        <input @change="getImages" multiple  accept="image/*,video/*" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50  focus:outline-none " aria-describedby="file_input_help" id="file_input" type="file">
+        <input @change="getImages" multiple accept="image/jpeg,image/jpg image/png, image/gif, image/webp, video/mp4"  class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50  focus:outline-none " aria-describedby="file_input_help" id="file_input" type="file">
         <p class="mt-1 text-sm text-gray-500 " id="file_input_help">PNG, JPG or GIF, video. (multiple)</p>
 
       </div>

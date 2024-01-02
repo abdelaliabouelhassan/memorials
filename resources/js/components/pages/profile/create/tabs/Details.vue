@@ -3,7 +3,7 @@
 
         <div class=" w-full flex  flex-col items-center space-y-2">
             <span class=" text-red-500 font-Altivo text-base" v-if="errors.image">{{errors.image[0]}}</span>
-                <input  accept="image/*" type="file" @change="getImage" hidden ref="profileImage" >
+                <input  accept="image/jpeg,image/jpg image/png, image/gif, image/webp" type="file" @change="getImage" hidden ref="profileImage" >
                 
                 <div class=" w-28 h-28 overflow-hidden rounded-full flex ring ring-gray-300 cursor-pointer m-auto"  :class="{' ring-red-500':errors.image}" @click="profileImage.click">
                     <svg v-if="!store.profile.step1.image" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 m-auto text-primary">
