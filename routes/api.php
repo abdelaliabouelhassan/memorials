@@ -35,5 +35,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('/get-profiles', [ProfilesController::class,'getProfiles']);
     Route::post('/profile/details/{id}/store', [ProfilesController::class,'ProfileDetailsStore']);
     Route::post('/profile/details/{id}/media', [ProfilesController::class,'ProfileMediaStore']);
+    Route::post('/profile/{id}/media/delete', [ProfilesController::class,'ProfileMediaDelete']);
     Route::get('/profile/{id}/details', [ProfilesController::class,'ProfileDetails']);
+    Route::get('/profile/{id}/media', [ProfilesController::class,'ProfileMedia']);
 });

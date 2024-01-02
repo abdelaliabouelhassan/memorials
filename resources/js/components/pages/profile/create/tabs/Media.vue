@@ -18,7 +18,7 @@
           </video>
 
         </div>
-        <button class=" absolute -top-2 -right-2" @click="RemoveFile(index)">
+        <button class=" absolute -top-2 -right-2" @click="RemoveFile(item,index)">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-red-500 hover:text-opacity-75 duration-200">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M15 12H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
            </svg>
@@ -93,8 +93,21 @@ const getImages = (e) => {
 };
 
 
-const RemoveFile = (index) => {
-  store.profile.step2.images.splice(index,1)
+const RemoveFile = (item,index) => {
+  if(item.src.length > 50){
+     store.profile.step2.images.splice(index,1);
+     return;
+  }else{
+      if(!confirm('are you sure you want to delete?')) return;
+      axios.post('/api/profile/'+ route.params.id +'/media/delete',{path:item.src}).then((res) => {
+        console.log(res.data)
+        store.profile.step2.images.splice(index,1)
+    }).catch((err) => {
+        console.log(err)
+        router.push('/profile')
+    })
+  }
+ 
 }
 
 
@@ -119,6 +132,23 @@ const Next = () => {
         loading.value = false
     })
 }
+
+const getStep2 = () => {
+    axios.get('/api/profile/'+ route.params.id +'/media').then((res) => {
+        console.log(res.data)
+        res.data.forEach(element => {
+          store.profile.step2.images.push({src:element.path,type:element.type})
+        });
+
+    }).catch((err) => {
+        console.log(err)
+        router.push('/profile')
+    })
+}
+
+onMounted(() => {
+  getStep2();
+})
 
 
 
