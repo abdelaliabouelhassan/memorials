@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Media;
 use App\Models\Profile;
 use Exception;
 use Illuminate\Http\Request;
@@ -87,6 +88,24 @@ class ProfilesController extends Controller
         }
     }
 
+
+    public function ProfileMediaStore(Request $request,$id){
+       
+
+
+       $profile =  Profile::findOrFail($id);
+       $files = $request->images;
+       if($profile->user_id == auth('sanctum')->id()){
+        foreach($files as $file){
+            return $file['type'];
+            $media = new Media();
+            $media->path = $this->uploadImage('uploads/media/', $file['src']);
+            $media->type = $file['type'];
+            $media->profile_id = $id;
+            $media->save();
+        }
+       }
+    }
 
     public function ProfileDetails($id) {
         $profile = Profile::findOrFail($id);
