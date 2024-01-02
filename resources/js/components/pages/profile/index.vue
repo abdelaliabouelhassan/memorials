@@ -36,7 +36,7 @@
        
 
         <div class=" w-full flex flex-col items-start space-y-4">
-            <div v-for="(profile,index,key) in profiles" :key="key" class=" w-full bg-[#F2F2F1] rounded-md flex items-center justify-between px-5 shadow py-7">
+            <div v-for="(profile,index,key) in profiles" :key="key" :class="{'ring':!profile.step_one_completed || !profile.step_two_completed}" class=" w-full  ring-red-400 bg-[#F2F2F1] rounded-md flex items-center justify-between px-5 shadow py-7">
                 <div class=" flex items-center space-x-2">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8 text-primary">
                       <path fill-rule="evenodd" d="M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z" clip-rule="evenodd" />
@@ -45,6 +45,16 @@
 
                 </div>
                  <div class=" flex items-center space-x-2">
+                    <button class=" group relative" v-if="!profile.step_one_completed || !profile.step_two_completed">
+                          <div 
+                            class="absolute  ransition-all scale-0 group-hover:scale-100 duration-200 -left-16 -top-10 z-50 whitespace-normal break-words rounded-lg bg-black py-1.5 px-3 font-sans text-sm font-normal text-white focus:outline-none">
+                             <span class=" whitespace-nowrap text-lg font-Altivo">Incomplete Profile.</span>
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-orange-300">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" />
+                        </svg>
+
+                    </button>
                     <router-link :to="'/profile/' + profile.id + '/edit'">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8 text-primary hover:text-opacity-65 duration-200">
                           <path d="M21.731 2.269a2.625 2.625 0 0 0-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 0 0 0-3.712ZM19.513 8.199l-3.712-3.712-12.15 12.15a5.25 5.25 0 0 0-1.32 2.214l-.8 2.685a.75.75 0 0 0 .933.933l2.685-.8a5.25 5.25 0 0 0 2.214-1.32L19.513 8.2Z" />
