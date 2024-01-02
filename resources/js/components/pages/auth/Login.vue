@@ -165,7 +165,7 @@ const login = () => {
          if (error.response && error.response.status === 422) {
             // 422 Unprocessable Entity error
             errors.value = error.response.data.errors;
-            console.log('Validation errors:', errors.value);
+            // console.log('Validation errors:', errors.value);
         
            } 
            else if(error.response && error.response.status === 401){

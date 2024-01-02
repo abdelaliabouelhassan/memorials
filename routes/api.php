@@ -33,4 +33,6 @@ Route::get('/facebook/auth',[LoginController::class,'redirectToFacebook']);
 Route::group(['middleware' => 'auth:sanctum'], function () {
     // Your routes go here
     Route::get('/get-profiles', [ProfilesController::class,'getProfiles']);
+    Route::post('/profile/details/{id}/store', [ProfilesController::class,'ProfileDetailsStore']);
+    Route::get('/profile/{id}/details', [ProfilesController::class,'ProfileDetails']);
 });

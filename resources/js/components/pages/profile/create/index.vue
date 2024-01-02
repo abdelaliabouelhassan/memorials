@@ -42,7 +42,7 @@
 
 
        <div class=" w-full pb-4">
-          <Details v-if=" step == 0" />
+          <Details v-if=" step == 0" @next='setActive(1)' />
           <Media v-else-if="step == 1" />
           <Accesses v-else-if="step == 2" />
        </div>
@@ -60,6 +60,8 @@ import { onMounted, ref } from "vue";
 import { useStore } from "@/stores/states.js"
 const store = useStore()
 const step = ref(0)
+
+
 
 const setActive = (index) => {
     step.value = index
