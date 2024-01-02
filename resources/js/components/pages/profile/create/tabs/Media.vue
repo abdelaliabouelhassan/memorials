@@ -134,6 +134,7 @@ const Next = () => {
 }
 
 const getStep2 = () => {
+   store.profile.step2.images = []
     axios.get('/api/profile/'+ route.params.id +'/media').then((res) => {
         console.log(res.data)
         res.data.forEach(element => {
