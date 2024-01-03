@@ -1,8 +1,8 @@
 <template>
   <div class=" w-full h-screen overflow-hidden  relative ">
-   <div class=" w-full max-w-lg sm:border-2 h-full max-h-full mx-auto relative">
+   <div class=" w-full max-w-lg md:max-w-full sm:border-2 h-full max-h-full mx-auto relative">
      <Header @openMenu='openMenu' :theme='theme' /> 
-     <div class=" w-full h-full pt-[3.2rem]  relative" :class="{'pb-20':theme != 'dark'}">
+     <div class=" w-full max-w-lg mx-auto h-full pt-[3.2rem] md:border  relative" :class="{'pb-20':theme != 'dark'}">
        <div class=" w-full absolute backdrop-blur-md  h-full z-50 left-0 " v-if="open">
           <div class=" w-full py-10 px-8 flex flex-col items-end space-y-2 justify-end text-primary text-2xl font-Altivo font-normal">
             <router-link to="/profile">MEIN KONTO</router-link>

@@ -1,5 +1,5 @@
 <template>
-    <div class=" w-full flex items-center justify-between absolute z-20 -bottom-[0.1rem] bg-white p-4">
+    <div class=" w-full flex items-center  md:border justify-between absolute z-20 -bottom-[0.1rem] bg-white p-4">
         <div class=" flex items-center space-x-3">
           <router-link to="/" class=" text-primary text-sm font-Altivo">Datenschutz</router-link>
           <router-link to="/" class=" text-primary text-sm font-Altivo">Impressum</router-link>
