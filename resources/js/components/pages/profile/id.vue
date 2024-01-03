@@ -47,7 +47,7 @@ import MainLayouts from "@/components/layouts/Default.vue";
 import BottomSheet from '@/components/partials/UI/BottomSheet.vue'
 import axios from "axios";
 import { onMounted, ref } from "vue";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 
 
 const duration = ref(5000); //5s
@@ -55,7 +55,7 @@ const progress = ref(0)
 const animationId = ref(null)
 const startTime = ref(null)
 const paused = ref(false)
-const router = useRoute();
+const router = useRouter();
 const route = useRoute();
 
 const profile = ref([])
@@ -164,6 +164,7 @@ const loadProfile = () => {
         startProgress();
     }).catch((err) => {
         console.log(err)
+        router.push('/login')
     })
 }
 
