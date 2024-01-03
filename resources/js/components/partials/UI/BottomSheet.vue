@@ -6,11 +6,11 @@
             </button>
             <div @click="openSheet" class=" w-full flex space-x-2 items-center cursor-pointer">
                 <div class=" w-14 h-14 rounded-full border  overflow-hidden">
-                    <img  src="https://flowbite.com/docs/images/people/profile-picture-3.jpg" class=" w-full h-full object-cover" alt="">
+                    <img  :src="profile.image" class=" w-full h-full object-cover" alt="">
                 </div>
                 <div class=" flex flex-col items-start -space-y-1">
-                    <span class=" text-white uppercase font-Altivo text-xl font-medium">MAX MUSTERMANN</span>
-                    <span class=" text-white font-Inter text-base">☨ 22.01.1950 - 19.12.2023</span>
+                    <span class=" text-white uppercase font-Altivo text-xl font-medium">{{profile.fullname}}</span>
+                    <span class=" text-white font-Inter text-base">☨ {{profile.birthday}} - {{profile.death}}</span>
                 </div>
             </div>
 
@@ -38,14 +38,12 @@
        <div class=" w-full h-[70%] md:h-[80%] overflow-y-auto ">
          <div class=" w-full p-4 space-y-4" v-if="openType === 'details'">
             <p class=" text-white text-lg font-Altivo font-normal">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos reprehenderit quasi iusto iste, vero dolores,
-                pariatur odio hic rem quod provident praesentium blanditiis, voluptatibus velit? Est quidem ipsa quo doloribus!
+                {{profile.description}}
             </p>
-             <p v-for="n in 10" :key="n" class=" text-white text-lg font-Altivo font-normal">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos reprehenderit quasi iusto iste, vero dolores,
-                pariatur odio hic rem quod provident praesentium blanditiis, voluptatibus velit? Est quidem ipsa quo doloribus!
-                pariatur odio hic rem quod provident praesentium blanditiis, voluptatibus velit? Est quidem ipsa quo doloribus!
+             <p class=" text-white text-lg font-Altivo font-normal">
+                {{profile.miscellaneous}}
             </p>
+            
         </div>
         <div class=" w-full flex flex-col items-start space-y-4" v-else-if="openType === 'comments'">
             
@@ -116,6 +114,7 @@
 
 <script setup>
  import { ref } from "vue";
+ const props = defineProps(['profile'])
  const openType = ref('details')
 
  const open = ref(false)

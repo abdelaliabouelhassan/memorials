@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Media;
 use App\Models\Profile;
+use App\Models\QrCode;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -16,7 +17,7 @@ class ProfilesController extends Controller
 
     public function getProfiles()
     {
-        $profiles = Profile::where('user_id', auth('sanctum')->id())->where('qrcode_id', '!=', null)->get();
+        $profiles = Profile::where('user_id', auth('sanctum')->id())->where('qrcode_id', '!=', null)->with('qrcode')->get();
 
         return response()->json($profiles, 200);
     }
@@ -79,15 +80,15 @@ class ProfilesController extends Controller
 
             // Define the path where you want to store the file
             $filePath = $path . $filename;
-            if($this->getMediaType($ext) == 'image'){
+            if ($this->getMediaType($ext) == 'image') {
                 $fileContents = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $base64Data));
-            }else if('video'){
+            } else if ('video') {
                 $fileContents = base64_decode(preg_replace('#^data:video/\w+;base64,#i', '', $base64Data));
-            }else{
+            } else {
                 throw new Exception('Unable to determine file extension.');
             }
-           
-           
+
+
             // Save the file using file_put_contents
             file_put_contents($filePath, $fileContents);
             return '/' . $filePath;
@@ -118,7 +119,7 @@ class ProfilesController extends Controller
         $files = $request->images;
         if ($profile->user_id == auth('sanctum')->id()) {
             foreach ($files as $file) {
-                
+
                 if (strlen($file['src']) > 50) {
                     $media = new Media();
                     $media->path = $this->uploadImage('uploads/media/', $file['src']);
@@ -127,7 +128,6 @@ class ProfilesController extends Controller
                     $media->save();
                     $profile->step_two_completed = true;
                 }
-                
             }
             $profile->save();
             return response()->json(['message' => 'Step two saved successfully']);
@@ -155,7 +155,7 @@ class ProfilesController extends Controller
                 $media->delete();
             }
 
-            if(Media::where('profile_id', $id)->count() == 0){
+            if (Media::where('profile_id', $id)->count() == 0) {
                 $profile->step_two_completed = false;
                 $profile->save();
             }
@@ -200,5 +200,29 @@ class ProfilesController extends Controller
         }
 
         return abort(404);
+    }
+
+
+    public function  ShowProfile($code)
+    {
+        $qrCode = QrCode::where('code', $code)->first();
+        if (!$qrCode)  abort(404);
+
+        $profile = Profile::where('qrcode_id', $qrCode->id)->where('step_one_completed', true)->where('step_two_completed', true)->with('media')->first();
+        if (!$profile)  abort(404);
+
+        if (!$profile->private) {
+            return response()->json($profile, 200);
+        }
+
+        if (!auth('sanctum')->check()) {
+            return abort(404);
+        }
+
+        if (auth('sanctum')->id() === $profile->user_id) {
+            return response()->json($profile, 200);
+        }
+
+        abort(404);
     }
 }

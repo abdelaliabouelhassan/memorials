@@ -1,12 +1,13 @@
 <template>
   <MainLayouts theme='dark' class="">
-    <div>
-        <img src="https://thumbs.dreamstime.com/b/m%C4%99%C5%BCczyzna-stary-17599452.jpg" class="  w-full h-full bg-cover absolute top-0 left-0 " alt="">
+    <div v-if="mediaIndexMax > 0">
+        <img v-if="getFileType(media[mediaIndex].type) == 'image'" :src="media[mediaIndex].path" class="  w-full h-full object-cover absolute top-0 left-0 " alt="">
+        <video v-if="getFileType(media[mediaIndex].type) == 'video'" :src="media[mediaIndex].path" class=" w-full h-full absolute object-cover" muted autoplay></video>
     </div>
     <div class=" w-full h-full z-10 relative backdrop-blur-xl py-4 px-4 space-y-8 ">
          <div class=" w-full max-w-sm mx-auto">
             <div class="w-full flex items-center space-x-4">
-            <button>
+            <button @click="prev">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-white">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
                  </svg>
@@ -22,7 +23,7 @@
                  <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653Z" />
                 </svg>
             </button>
-            <button>
+            <button @click="next">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-white">
                  <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
                 </svg>
@@ -30,12 +31,13 @@
          </div>
          </div>
 
-         <div class=" w-full rounded-md bg-gray-400 h-3/4 shadow-2xl overflow-hidden">
-            <img src="https://thumbs.dreamstime.com/b/m%C4%99%C5%BCczyzna-stary-17599452.jpg" class=" w-full h-full object-cover" alt="">
+         <div v-if="mediaIndexMax > 0" class=" w-full rounded-md bg-gray-400 h-3/4 shadow-2xl overflow-hidden">
+            <img v-if="getFileType(media[mediaIndex].type) == 'image'" :src="media[mediaIndex].path" class=" w-full h-full object-cover" alt="">
+             <video v-if="getFileType(media[mediaIndex].type) == 'video'" :src="media[mediaIndex].path" class=" w-full h-full object-cover" muted autoplay controls></video>
          </div>
     </div>
 
-    <BottomSheet />
+    <BottomSheet :profile='profile' />
   </MainLayouts>
 </template>
 
@@ -43,7 +45,9 @@
 <script setup>
 import MainLayouts from "@/components/layouts/Default.vue";
 import BottomSheet from '@/components/partials/UI/BottomSheet.vue'
+import axios from "axios";
 import { onMounted, ref } from "vue";
+import { useRoute } from "vue-router";
 
 
 const duration = ref(5000); //5s
@@ -51,7 +55,13 @@ const progress = ref(0)
 const animationId = ref(null)
 const startTime = ref(null)
 const paused = ref(false)
+const router = useRoute();
+const route = useRoute();
 
+const profile = ref([])
+const media = ref([])
+const mediaIndex = ref(0)
+const mediaIndexMax = ref(0)
 const startProgress = () => {
     if (progress.value === 0 || progress.value === 100) {
         progress.value = 0; // Reset progress if starting a new progress
@@ -93,15 +103,74 @@ const animateProgress = () => {
         } else {
           startTime.value = null; // Reset start time when animation completes
           paused.value = false;
-          startProgress() //restart
+          if(mediaIndex.value < mediaIndexMax.value - 1 ){
+            mediaIndex.value++;
+          }else{
+            mediaIndex.value = 0
+          }
+        console.log(mediaIndex.value)
+        startProgress()
+         
         }
       };
 
       animationId.value = requestAnimationFrame(animate);
 }
 
+const restartAnimation = () => {
+      pauseProgress();
+      progress.value = 0; // Reset progress if starting a new progress
+      paused.value = false
+      startTime.value = 0
+      animateProgress()
+}
+
+const next = () => {
+    if(mediaIndex.value < mediaIndexMax.value - 1){
+        mediaIndex.value++;
+    }else{
+        mediaIndex.value = 0
+    }
+    restartAnimation()
+}
+
+const prev = () => {
+     if(mediaIndex.value > 0){
+        mediaIndex.value--;
+    }else{
+        mediaIndex.value = mediaIndexMax.value - 1
+    }
+    restartAnimation()
+}
+
+const getFileType = (fileType) => {
+    const lowercaseFileType = fileType.toLowerCase();
+
+    if (lowercaseFileType.includes('image')) {
+        return 'image';
+    } else if (lowercaseFileType.includes('video')) {
+        return 'video';
+    } else {
+        return 'unknown';
+    }
+}
+
+
+const loadProfile = () => {
+    axios.get('/api/profile/'+ route.params.id +'/show').then((res) => {
+        profile.value = res.data;
+        media.value = res.data.media;
+        mediaIndexMax.value = media.value.length
+        startProgress();
+    }).catch((err) => {
+        console.log(err)
+    })
+}
+
 onMounted(() => {
-    startProgress()
+    // startProgress()
+    loadProfile()
+
 })
 
 </script>

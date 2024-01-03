@@ -42,3 +42,5 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('/profile/{id}/details', [ProfilesController::class,'ProfileDetails']);
     Route::get('/profile/{id}/media', [ProfilesController::class,'ProfileMedia']);
 });
+
+Route::get('/profile/{code}/show', [ProfilesController::class,'ShowProfile']);
