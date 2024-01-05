@@ -44,3 +44,5 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
 });
 
 Route::get('/profile/{code}/show', [ProfilesController::class,'ShowProfile']);
+Route::post('/profile/comment/{id}/create', [ProfilesController::class,'CreateComment']);
+Route::get('/profile/{code}/comments', [ProfilesController::class,'GetComments']);

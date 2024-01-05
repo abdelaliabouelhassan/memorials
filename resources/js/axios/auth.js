@@ -2,6 +2,8 @@
 
 import axios from 'axios';
 import router from '../router/routes'
+import { useRoute } from 'vue-router';
+const route = useRoute()
 // Configure the default headers for axios:
 axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
@@ -19,7 +21,7 @@ axios.interceptors.response.use(
             // Reset the axios Authorization header:
             axios.defaults.headers.common['Authorization'] = 'Bearer';
             // Redirect the user to the login page:
-            router.push({ name: 'login' });
+            if(route.name != 'profile-id') router.push({ name: 'login' });
         }
         return Promise.reject(error);
     }

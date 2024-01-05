@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Comment;
 use App\Models\Media;
 use App\Models\Profile;
 use App\Models\QrCode;
@@ -224,5 +225,42 @@ class ProfilesController extends Controller
         }
 
         abort(404);
+    }
+
+    public function CreateComment(Request $request,$id){
+        $request->validate([
+            'first_name' => 'required|min:2|max:20',
+            'last_name' => 'required|min:2|max:20',
+            'comment' => 'required'
+        ]); 
+
+        $user_id = null;
+
+        if(auth('sanctum')->check()){
+            $user_id = auth('sanctum')->id();
+        }
+
+        Comment::create([
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'comment' => $request->comment,
+            'profile_id' => $id,
+            'user_id' => $user_id,
+            'approved' => false,
+        ]);
+
+        //send email to profile owner
+
+
+        return response()->json('comment created',200);
+    }
+
+    public function GetComments($code){
+        $qrCode = QrCode::where('code',$code)->first();
+        if (!$qrCode)  abort(404);
+        $profile = Profile::where('qrcode_id', $qrCode->id)->where('step_one_completed', true)->where('step_two_completed', true)->first('id');
+      
+        $comments = Comment::where('profile_id',$profile->id)->where('approved',true)->orderBy('created_at','desc')->get();
+        return response()->json($comments,200);
     }
 }

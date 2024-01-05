@@ -192,7 +192,7 @@ const animateProgress = () => {
           }else{
             mediaIndex.value = 0
           }
-        console.log(mediaIndex.value)
+        
         startProgress()
          
         }
