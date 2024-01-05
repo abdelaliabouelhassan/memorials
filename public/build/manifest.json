@@ -1,0 +1,47 @@
+{
+  "public/fonts/altivo-black.otf": {
+    "file": "assets/altivo-black-9A5xDbi1.otf",
+    "src": "public/fonts/altivo-black.otf"
+  },
+  "public/fonts/altivo-bold.otf": {
+    "file": "assets/altivo-bold-VfKCG1Qh.otf",
+    "src": "public/fonts/altivo-bold.otf"
+  },
+  "public/fonts/altivo-extralight.otf": {
+    "file": "assets/altivo-extralight-rd9tsZdr.otf",
+    "src": "public/fonts/altivo-extralight.otf"
+  },
+  "public/fonts/altivo-light.otf": {
+    "file": "assets/altivo-light-1ZVUHdlA.otf",
+    "src": "public/fonts/altivo-light.otf"
+  },
+  "public/fonts/altivo-medium.otf": {
+    "file": "assets/altivo-medium-roOxah6h.otf",
+    "src": "public/fonts/altivo-medium.otf"
+  },
+  "public/fonts/altivo-regular.otf": {
+    "file": "assets/altivo-regular-Gf8Z0je6.otf",
+    "src": "public/fonts/altivo-regular.otf"
+  },
+  "public/fonts/altivo-thin.otf": {
+    "file": "assets/altivo-thin-TlosomHY.otf",
+    "src": "public/fonts/altivo-thin.otf"
+  },
+  "public/fonts/altivo-ultra.otf": {
+    "file": "assets/altivo-ultra-tumvGZSk.otf",
+    "src": "public/fonts/altivo-ultra.otf"
+  },
+  "resources/css/app.css": {
+    "file": "assets/app-6HcYG5uu.css",
+    "isEntry": true,
+    "src": "resources/css/app.css"
+  },
+  "resources/js/app.js": {
+    "css": [
+      "assets/app-OjY40BKP.css"
+    ],
+    "file": "assets/app-hN298wW0.js",
+    "isEntry": true,
+    "src": "resources/js/app.js"
+  }
+}
