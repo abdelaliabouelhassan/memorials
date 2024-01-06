@@ -41,6 +41,9 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post('/profile/{id}/access/store', [ProfilesController::class,'ProfileAccsessStore']);
     Route::get('/profile/{id}/details', [ProfilesController::class,'ProfileDetails']);
     Route::get('/profile/{id}/media', [ProfilesController::class,'ProfileMedia']);
+    Route::get('/profile/{id}/comments/{status}', [ProfilesController::class,'GetProfileComments']);
+    Route::post('/profile/{id}/comments/approve', [ProfilesController::class,'ApproveComment']);
+    Route::post('/profile/{id}/comments/delete', [ProfilesController::class,'DeleteComment']);
 });
 
 Route::get('/profile/{code}/show', [ProfilesController::class,'ShowProfile']);

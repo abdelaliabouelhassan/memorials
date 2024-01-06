@@ -263,4 +263,33 @@ class ProfilesController extends Controller
         $comments = Comment::where('profile_id',$profile->id)->where('approved',true)->orderBy('created_at','desc')->get();
         return response()->json($comments,200);
     }
+
+    public function GetProfileComments($id,$status){
+        $profile = Profile::findOrFail($id);
+        $status = $status == 1 ? true  : false;
+        $comments = Comment::where('profile_id',$profile->id)->where('approved',$status)->orderBy('created_at','desc')->get();
+
+        return response()->json($comments,200);
+
+    }
+
+    public function ApproveComment(Request $request,$id){
+        $profile = Profile::findOrFail($id);
+        if($profile->user_id == auth('sanctum')->id()){
+            $comment = Comment::findOrFail($request->comment_id);
+            $comment->approved = true;
+            $comment->save();
+            return response()->json('comment deleted',200);
+        }
+        abort(404);
+    }
+
+    public function DeleteComment(Request $request,$id){
+        $profile = Profile::findOrFail($id);
+        if($profile->user_id == auth('sanctum')->id()){
+            $comment = Comment::findOrFail($request->comment_id)->delete();
+            return response()->json('comment deleted',200);
+        }
+        abort(404);
+    }
 }

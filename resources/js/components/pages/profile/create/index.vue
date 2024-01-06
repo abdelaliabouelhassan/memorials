@@ -45,7 +45,14 @@
           <Details v-if=" step == 0" @next='setActive(1)' />
           <Media v-else-if="step == 1" @next='setActive(2)'/>
           <Accesses v-else-if="step == 2" />
+          <div class=" w-full py-2">
+             <router-link to="/profile" class=" w-full">
+                   <button class=" uppercase bg-white border-2 border-primary text-primary rounded-md hover:scale-y-110 duration-200 w-full py-2 font-Altivo text-lg">back</button>
+               </router-link>
+          </div>
        </div>
+
+       
     </div>
   </MainLayouts>
 </template>
