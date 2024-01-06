@@ -13,6 +13,11 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::get('/test',function() {
+    return view('mails.comment_created');
+});
+
 Route::get('/google/callback',[LoginController::class,'handleGoogleCallback']);
 Route::get('/twitter/callback',[LoginController::class,'handleTwitterCallback']);
 Route::get('/facebook/callback',[LoginController::class,'handleFacebookCallback']);

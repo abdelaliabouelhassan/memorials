@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Mail\CommentCreatedMail;
 use App\Models\Comment;
 use App\Models\Media;
 use App\Models\Profile;
@@ -10,6 +11,7 @@ use App\Models\QrCode;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
 class ProfilesController extends Controller
@@ -250,7 +252,7 @@ class ProfilesController extends Controller
         ]);
 
         //send email to profile owner
-
+        Mail::to('ab@gmail.com')->send(new CommentCreatedMail($request->comment));
 
         return response()->json('comment created',200);
     }
