@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory,useRoute } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 import {requireAuth} from '../middleware/auth'
 import {Auth} from '../middleware/authpage'
 //componentes
@@ -21,11 +21,9 @@ const routes = [
  
 ]
 
-const route = useRoute()
 const router = createRouter({
   history: createWebHistory(),
   routes,
-  route
 })
 
 export default router;
