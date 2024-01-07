@@ -157,7 +157,8 @@ const login = () => {
     axios.post('/api/login',form.value).then((res) => {
         localStorage.setItem('token',res.data.token)
         success.value = true
-        router.push('/profile')
+        //router.push('/profile')
+        window.location.href = '/profile'
 
     }).catch((error) => {
         console.log(error)

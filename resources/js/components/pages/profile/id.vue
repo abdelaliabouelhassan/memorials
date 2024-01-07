@@ -245,7 +245,8 @@ const loadProfile = () => {
         profile.value = res.data;
         media.value = res.data.media;
         mediaIndexMax.value = media.value.length
-        if(profile.value.password != ''){
+        
+        if(profile.value.password != '' && profile.value.password != null){
             showPasseord.value = true
         }else{
             startProgress();

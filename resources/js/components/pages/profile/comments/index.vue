@@ -35,7 +35,7 @@
           <div class=" w-full flex flex-col items-start space-y-8">
 
             <div class="flex w-full items-start gap-2.5" v-for="(item,index,key) in comments" :key="key">
-            <img class="w-8 h-8 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-3.jpg" alt="Jese image">
+             <img class="w-8 h-8 rounded-full" :src="'https://api.dicebear.com/6.x/initials/svg?seed=' + item.first_name + ' ' + item.last_name" alt="Jese image">
             <div class="flex flex-col gap-1 w-full max-w-[320px]">
                 <div class="flex items-center space-x-2 rtl:space-x-reverse">
                     <span class="text-sm font-semibold text-gray-900 ">{{item.first_name + ' '+ item.last_name}}</span>
