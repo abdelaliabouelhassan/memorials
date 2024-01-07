@@ -214,19 +214,21 @@ class ProfilesController extends Controller
         $profile = Profile::where('qrcode_id', $qrCode->id)->where('step_one_completed', true)->where('step_two_completed', true)->with('media')->first();
         if (!$profile)  abort(404);
 
-        if (!$profile->private) {
-            return response()->json($profile, 200);
+        if (auth('sanctum')->check() && $profile->user_id == auth('sanctum')->id()) {
+            return response()->json(['profile'=>$profile,'private'=>false], 200);
         }
 
-        if (!auth('sanctum')->check()) {
-            return abort(404);
+        if ($profile->private) {
+            return response()->json(['profile'=>$profile,'private'=>true], 200);
         }
+        
+        return response()->json(['profile'=>$profile,'private'=>false], 200);
 
-        if (auth('sanctum')->id() === $profile->user_id) {
-            return response()->json($profile, 200);
-        }
+        // if (auth('sanctum')->id() === $profile->user_id) {
+        //     return response()->json(['profile'=>$profile,'private'=>true], 200);
+        // }
 
-        abort(404);
+      
     }
 
     public function CreateComment(Request $request,$id){

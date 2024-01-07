@@ -1,6 +1,6 @@
 <template>
   <MainLayouts :theme="showPasseord ? 'password' :'dark'" class="">
-   <div class=" w-full h-full" v-if="!showPasseord">
+   <div class=" w-full h-full" v-if="!isPrivate && !showPasseord">
      <div v-if="mediaIndexMax > 0">
         <img v-if="getFileType(media[mediaIndex].type) == 'image'" :src="media[mediaIndex].path" class="  w-full h-full object-cover absolute top-0 left-0 " alt="">
         <video v-if="getFileType(media[mediaIndex].type) == 'video'" :src="media[mediaIndex].path" class=" w-full h-full absolute object-cover" muted autoplay></video>
@@ -41,7 +41,7 @@
    </div>
 
    <div v-else class=" w-full h-full flex p-4">
-    <div class="relative flex w-full m-auto max-w-[24rem] flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
+    <div v-if="!isPrivate" class="relative flex w-full m-auto max-w-[24rem] flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
         <div
             class="relative grid px-4 py-8 m-0 overflow-hidden text-center text-white bg-primary place-items-center rounded-xl bg-clip-border shadow-gray-900/20">
             <div class="h-20 p-6 mb-4 text-white">
@@ -106,6 +106,20 @@
             </div>
         </div>
     </div>
+     <div v-else class="relative flex w-full m-auto max-w-[24rem] flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
+        <div
+            class="relative grid px-4 py-8 m-0 overflow-hidden text-center text-white bg-primary place-items-center rounded-xl bg-clip-border shadow-gray-900/20">
+            <div class="h-20 p-6 mb-4 text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-16 h-16">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" />
+                </svg>
+            </div>
+            <h5 class="block font-sans text-xl antialiased font-semibold leading-snug tracking-normal text-white">
+             This profile is private.
+            </h5>
+        </div>
+        
+    </div>
    </div>
   </MainLayouts>
 </template>
@@ -127,6 +141,7 @@ const paused = ref(false)
 const router = useRouter();
 const route = useRoute();
 const showPasseord = ref(false)
+const isPrivate = ref(false)
 const password  = ref('');
 const passwordError = ref('')
 const profile = ref([])
@@ -242,13 +257,20 @@ const getFileType = (fileType) => {
 
 const loadProfile = () => {
     axios.get('/api/profile/'+ route.params.id +'/show').then((res) => {
-        profile.value = res.data;
-        media.value = res.data.media;
+        
+        profile.value = res.data.profile;
+        media.value = res.data.profile.media;
+        isPrivate.value = res.data.private
         mediaIndexMax.value = media.value.length
         
+        if(isPrivate.value){
+            return;
+        }
+
         if(profile.value.password != '' && profile.value.password != null){
             showPasseord.value = true
-        }else{
+        }
+        else{
             startProgress();
         }
         
