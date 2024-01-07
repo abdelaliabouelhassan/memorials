@@ -2,8 +2,7 @@
 
 import axios from 'axios';
 import router from '../router/routes'
-import { useRoute } from 'vue-router';
-const route = useRoute()
+import route  from '../router/routes'
 // Configure the default headers for axios:
 axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 

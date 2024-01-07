@@ -175,7 +175,7 @@ const login = () => {
            }
            else {
                 // Handle other types of errors here
-                console.log('Other error:', error.message);
+                console.log('Other error:', error);
             }
     }).finally(() => {
         loading.value = false

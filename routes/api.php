@@ -44,6 +44,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('/profile/{id}/comments/{status}', [ProfilesController::class,'GetProfileComments']);
     Route::post('/profile/{id}/comments/approve', [ProfilesController::class,'ApproveComment']);
     Route::post('/profile/{id}/comments/delete', [ProfilesController::class,'DeleteComment']);
+    Route::post('/send-email', [RegisterController::class,'SendEmail']);
 });
 
 Route::get('/profile/{code}/show', [ProfilesController::class,'ShowProfile']);

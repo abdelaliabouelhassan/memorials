@@ -1,5 +1,20 @@
 <template>
   <MainLayouts>
+    <div class=" w-full pt-10 px-4">
+        <div v-if="store.user.email_verified_at == null" role="alert" class="relative flex w-full px-4 py-4 text-base text-gray-900 border border-gray-900 rounded-lg font-regular">
+            <div class="shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z">
+                </path>
+                </svg>
+            </div>
+            <div class="ml-3 mr-12">Your email is not verified. We sent you an email. <a href="javascript:void(0)" class=" text-primary text-lg  underline" @click="SendEmail" v-if="Sent == null"> send it again</a> 
+              <span v-else-if="Sent == 0">Sending...</span>
+            </div>
+        </div>
+    </div>
     <div class=" w-full h-full flex flex-col items-start space-y-8 py-8 px-4 overflow-hidden">
         <div class=" flex items-center space-x-4">
             <div class=" w-24 h-24 rounded-full bg-[#F4EFEF] p-2 shadow">
@@ -83,6 +98,7 @@
 import MainLayouts from "@/components/layouts/Default.vue";
 import { onMounted, ref } from "vue";
 import { useStore } from "@/stores/states.js"
+const Sent = ref(null)
 const store = useStore()
 
 import axios from "axios";
@@ -96,6 +112,17 @@ const getProfile = () => {
     }).catch((error) => [
         console.log(error)
     ])
+}
+
+const SendEmail = () => {
+    Sent.value = 0
+      axios.post('/api/send-email').then((res) => {
+        console.log(res)
+        Sent.value = 1
+    }).catch((error) => {
+        Sent.value = null
+        console.log(error)
+    })
 }
 
 onMounted(() => {

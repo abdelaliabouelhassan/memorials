@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\Auth\LoginController;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,9 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/test',function() {
-    return view('mails.comment_created');
-});
+
 
 Route::get('/google/callback',[LoginController::class,'handleGoogleCallback']);
 Route::get('/twitter/callback',[LoginController::class,'handleTwitterCallback']);
@@ -27,6 +26,11 @@ Route::get('/social-login/{token}',function($token){
 })->name('social-login');
 
 
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+    return redirect('/');
+})->middleware(['auth'])->name('verification.verify');
+
 
 Route::get('/{any}', function () {
     return view('welcome');
@@ -34,5 +38,7 @@ Route::get('/{any}', function () {
 
 
 Route::auth();
+
+
 
 
