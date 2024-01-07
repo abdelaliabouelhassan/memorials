@@ -26,7 +26,7 @@
                       <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                     </svg>
                 </button>
-                <button>
+                <button @click="Share">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-9 h-9 text-white" :class="{'w-14 h-14':open}">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M9 8.25H7.5a2.25 2.25 0 0 0-2.25 2.25v9a2.25 2.25 0 0 0 2.25 2.25h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25H15m0-3-3-3m0 0-3 3m3-3V15" />
                     </svg>
@@ -213,6 +213,21 @@ import { useStore } from "@/stores/states.js"
     }).catch((err) => {
         console.log(err)
     })
+ }
+
+ const Share = () => {
+     if (navigator.share) {
+            navigator.share({
+                title: 'Your title',
+                text: 'Your text',
+                url: window.location.href
+            })
+            .then(() => console.log('Successfully shared'))
+            .catch((error) => console.error('Error sharing:', error));
+        } else {
+            console.log('Web Share API not supported on this browser');
+            // Handle alternative sharing method or provide a link to share
+        }
  }
 
  const formatDate = (inputDateString) => {

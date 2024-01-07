@@ -23,6 +23,7 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Resources\Forms\Components\Button;
+use Filament\Tables\Columns\Column;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ViewColumn;
@@ -71,7 +72,6 @@ class QrCodeResource extends Resource
     return $infolist
         ->schema([
             ViewEntry::make('code')->view('infolists.components.qr-code')
-          
                 ->columnSpanFull(),
         ]);
 }
@@ -80,6 +80,7 @@ class QrCodeResource extends Resource
     {
         return $table
             ->columns([
+                TextColumn::make('id'),
                 ViewColumn::make('code')->view('tables.columns.qr-code-column')->label('QR Code'),
                 ViewColumn::make('user_id')->view('tables.columns.assigne-user')->label('is Assigned'),
                 TextColumn::make('user.email')->label('Email')->searchable(),
