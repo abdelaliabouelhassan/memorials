@@ -10,7 +10,7 @@
                 </path>
                 </svg>
             </div>
-            <div class="ml-3 mr-12">{{$t('not_verified')}} <a href="javascript:void(0)" class=" text-primary text-lg  underline" @click="SendEmail" v-if="Sent == null"> send it again</a> 
+            <div class="ml-3 mr-12">{{$t('not_verified')}} <a href="javascript:void(0)" class=" text-primary text-lg  underline" @click="SendEmail" v-if="Sent == null"> {{$t('send_it_again')}}</a> 
               <span v-else-if="Sent == 0">{{$t('sending')}}...</span>
             </div>
         </div>

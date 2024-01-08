@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
@@ -34,11 +35,17 @@ class RegisterController extends Controller
                 'referral_code' =>$referral_code,
             ]);
 
+            Auth::login($user, true);
+
+            $token = auth('sanctum')->user()->createToken('authToken')->plainTextToken;
+
             
             event(new Registered($user));
+            
           
             return response()->json([
                 'message' => 'Account created successfully',
+                'token' => $token
             ], 200);
 
         } catch (\Exception $e) {

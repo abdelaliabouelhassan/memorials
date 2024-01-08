@@ -181,9 +181,10 @@ const register = () => {
     axios.post('/api/register',form.value).then((res) => {
         console.log(res)
         success.value = true
+        localStorage.setItem('token',res.data.token)
         setTimeout(() => {
             router.push('/login')
-        },1000)
+        },3000)
     }).catch((error) => {
         console.log(error)
         success.value = false

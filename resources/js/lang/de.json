@@ -10,7 +10,7 @@
     "or": "oder",
     "welcome": "Willkommen  👋🏻",
     "please_sign_up": "Bitte registrieren Sie sich unten",
-    "account_successfully_created": "Ihr Konto wurde erfolgreich erstellt!",
+    "account_successfully_created": "Ihr Konto wurde erfolgreich erstellt! und eine Bestätigungs-E-Mail wurde erfolgreich gesendet.",
     "first_name": "Vorname",
     "last_name": "Nachname",
     "loading": "Laden",
@@ -59,5 +59,6 @@
     "making_it_private_only": "Indem Sie es privat machen, haben nur Sie Zugriff.",
     "add_password": "Passwort hinzufügen",
     "bg_adding_password": "Durch Hinzufügen eines Passworts werden Sie dazu aufgefordert, darauf zuzugreifen Ihr Profil.",
-    "save": "Speichern"
+    "save": "Speichern",
+    "send_it_again":"sende es erneut"
 }
