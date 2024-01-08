@@ -1,5 +1,5 @@
 <template>
-    <div class=" w-full z-10 rounded-t-2xl  border-t border-white  absolute bottom-0 duration-300 transition-all backdrop-blur-xl ease-in-out" :class="{'h-3/4':open,' h-[6rem] ':!open}" style="background: linear-gradient(180deg, rgba(0,0,0,0.7623643207282913) 0%, rgba(0,0,0,0.18533350840336138) 100%)">
+    <div class=" w-full z-10 rounded-t-2xl  border-t border-white  absolute bottom-0 duration-300 transition-all backdrop-blur-xl ease-in-out" :class="{'h-3/4':open,' h-[6rem] ':!open}" >
         <div class=" w-full  relative p-4">
             <button @click="openSheet" class=" w-full absolute -top-1 left-0 flex cursor-pointer">
                 <div class=" m-auto h-2 w-20 rounded-full bg-white"></div>
@@ -10,7 +10,7 @@
                 </div>
                 <div class=" flex flex-col items-start -space-y-1">
                     <span class=" text-white uppercase font-Altivo text-xl font-medium">{{profile.fullname}}</span>
-                    <span class=" text-white font-Inter text-base">☨ {{formatDate(profile.birthday)}} - {{formatDate(profile.death)}}</span>
+                    <span class=" text-white font-Inter text-base">✟ {{formatDate(profile.birthday)}} - {{formatDate(profile.death)}}</span>
                 </div>
             </div>
 
@@ -37,10 +37,10 @@
      <div class=" w-full h-full px-4" v-if="open">
        <div class=" w-full h-[70%] md:h-[80%] overflow-y-auto ">
          <div class=" w-full p-4 space-y-4" v-if="openType === 'details'">
-            <p class=" text-white text-lg font-Altivo font-normal">
+            <p class=" text-white text-lg font-Altivo font-normal break-words">
                 {{profile.description}}
             </p>
-             <p class=" text-white text-lg font-Altivo font-normal">
+             <p class=" text-white text-lg font-Altivo font-normal break-words">
                 {{profile.miscellaneous}}
             </p>
             
@@ -216,10 +216,11 @@ import { useStore } from "@/stores/states.js"
  }
 
  const Share = () => {
+    console.log(props.profile)
      if (navigator.share) {
             navigator.share({
-                title: 'Your title',
-                text: 'Your text',
+                title: props.profile.fullname + ' ' + 'memorials',
+                text: 'memorials',
                 url: window.location.href
             })
             .then(() => console.log('Successfully shared'))
@@ -241,7 +242,7 @@ import { useStore } from "@/stores/states.js"
   const day = String(date.getDate()).padStart(2, '0');
 
   // Create the formatted date string
-  const formattedDate = `${year}.${month}.${day}`;
+  const formattedDate = `${day}.${month}.${year}`;
 
   return formattedDate;
 }

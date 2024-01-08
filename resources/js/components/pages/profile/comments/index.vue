@@ -109,7 +109,7 @@ const setActive = (index) => {
   const day = String(date.getDate()).padStart(2, '0');
 
   // Create the formatted date string
-  const formattedDate = `${year}.${month}.${day}`;
+  const formattedDate = `${day}.${month}.${year}`;
 
   return formattedDate;
 }
