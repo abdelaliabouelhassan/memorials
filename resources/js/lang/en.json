@@ -15,6 +15,11 @@
     "last_name": "Last Name",
     "loading": "Loading",
     "register": "Register",
-    "already_have_account":"already have an account?"
+    "already_have_account":"already have an account?",
+    "go_to_shop":"go to shop",
+    "my_profiles":"my profiles",
+    "unforgettable_moments":"unforgettable moments",
+    "eternal_memories": "eternal memories",
+    "login_to_manage_text": "log in to manage your soulstones or buy a soul mirror to preserve the memories of your loved ones."
 }
   
