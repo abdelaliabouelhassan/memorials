@@ -20,7 +20,7 @@ class ProfilesController extends Controller
 
     public function getProfiles()
     {
-        $profiles = Profile::where('user_id', auth('sanctum')->id())->where('qrcode_id', '!=', null)->with('qrcode')->get();
+        $profiles = Profile::where('user_id', auth()->id())->where('qrcode_id', '!=', null)->with('qrcode')->get();
 
         return response()->json($profiles, 200);
     }
@@ -41,7 +41,7 @@ class ProfilesController extends Controller
 
         $profile =  Profile::findOrFail($id);
 
-        if ($profile->user_id == auth('sanctum')->id()) {
+        if ($profile->user_id == auth()->id()) {
             $profile->fullname = $request->fullname;
             $profile->residence = $request->residence;
             $profile->religious = $request->religious;
@@ -120,7 +120,7 @@ class ProfilesController extends Controller
 
         $profile =  Profile::findOrFail($id);
         $files = $request->images;
-        if ($profile->user_id == auth('sanctum')->id()) {
+        if ($profile->user_id == auth()->id()) {
             foreach ($files as $file) {
 
                 if (strlen($file['src']) > 50) {
@@ -144,7 +144,7 @@ class ProfilesController extends Controller
 
         $profile =  Profile::findOrFail($id);
 
-        if ($profile->user_id == auth('sanctum')->id()) {
+        if ($profile->user_id == auth()->id()) {
 
             $path = $request->path;
 
@@ -174,7 +174,7 @@ class ProfilesController extends Controller
     {
         $profile =  Profile::findOrFail($id);
 
-        if ($profile->user_id == auth('sanctum')->id()) {
+        if ($profile->user_id == auth()->id()) {
             $profile->private = $request->private;
             $profile->password = $request->password;
             $profile->save();
@@ -186,7 +186,7 @@ class ProfilesController extends Controller
     public function ProfileDetails($id)
     {
         $profile = Profile::findOrFail($id);
-        if ($profile->user_id == auth('sanctum')->id()) {
+        if ($profile->user_id == auth()->id()) {
             return response()->json($profile, 200);
         }
 
@@ -197,7 +197,7 @@ class ProfilesController extends Controller
     public function ProfileMedia($id)
     {
         $profile = Profile::findOrFail($id);
-        if ($profile->user_id == auth('sanctum')->id()) {
+        if ($profile->user_id == auth()->id()) {
             $media = Media::where('profile_id', $id)->get();
             return response()->json($media, 200);
         }
@@ -214,7 +214,7 @@ class ProfilesController extends Controller
         $profile = Profile::where('qrcode_id', $qrCode->id)->where('step_one_completed', true)->where('step_two_completed', true)->with('media')->first();
         if (!$profile)  abort(404);
 
-        if (auth('sanctum')->check() && $profile->user_id == auth('sanctum')->id()) {
+        if (auth()->check() && $profile->user_id == auth()->id()) {
             return response()->json(['profile'=>$profile,'private'=>false], 200);
         }
 
@@ -224,7 +224,7 @@ class ProfilesController extends Controller
         
         return response()->json(['profile'=>$profile,'private'=>false], 200);
 
-        // if (auth('sanctum')->id() === $profile->user_id) {
+        // if (auth()->id() === $profile->user_id) {
         //     return response()->json(['profile'=>$profile,'private'=>true], 200);
         // }
 
@@ -240,9 +240,11 @@ class ProfilesController extends Controller
 
         $user_id = null;
 
-        if(auth('sanctum')->check()){
-            $user_id = auth('sanctum')->id();
+        if(auth()->check()){
+            $user_id = auth()->id();
         }
+
+        $profile = Profile::findOrFail($id);
 
         Comment::create([
             'first_name' => $request->first_name,
@@ -253,8 +255,10 @@ class ProfilesController extends Controller
             'approved' => false,
         ]);
 
+
+
         //send email to profile owner
-        Mail::to('ab@gmail.com')->send(new CommentCreatedMail($request->comment));
+        Mail::to($profile->user->email)->send(new CommentCreatedMail($request->comment));
 
         return response()->json('comment created',200);
     }
@@ -279,7 +283,7 @@ class ProfilesController extends Controller
 
     public function ApproveComment(Request $request,$id){
         $profile = Profile::findOrFail($id);
-        if($profile->user_id == auth('sanctum')->id()){
+        if($profile->user_id == auth()->id()){
             $comment = Comment::findOrFail($request->comment_id);
             $comment->approved = true;
             $comment->save();
@@ -290,7 +294,7 @@ class ProfilesController extends Controller
 
     public function DeleteComment(Request $request,$id){
         $profile = Profile::findOrFail($id);
-        if($profile->user_id == auth('sanctum')->id()){
+        if($profile->user_id == auth()->id()){
             $comment = Comment::findOrFail($request->comment_id)->delete();
             return response()->json('comment deleted',200);
         }

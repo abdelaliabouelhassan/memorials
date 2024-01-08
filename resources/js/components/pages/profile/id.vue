@@ -32,7 +32,7 @@
          </div>
          </div>
 
-         <div v-if="mediaIndexMax > 0" class=" w-full rounded-md bg-gray-400 h-3/4 shadow-2xl overflow-hidden">
+         <div v-if="mediaIndexMax > 0" class=" w-full rounded-md bg-gray-400 h-[70%] md:h-3/4 shadow-2xl overflow-hidden">
             <img v-if="getFileType(media[mediaIndex].type) == 'image'" :src="media[mediaIndex].path" class=" w-full h-full object-cover" alt="">
              <video v-if="getFileType(media[mediaIndex].type) == 'video'" :src="media[mediaIndex].path" class=" w-full h-full object-cover" muted autoplay controls></video>
          </div>
@@ -256,7 +256,7 @@ const getFileType = (fileType) => {
 
 
 const loadProfile = () => {
-    axios.get('/api/profile/'+ route.params.id +'/show').then((res) => {
+    axios.get('/profile/'+ route.params.id +'/show').then((res) => {
         
         profile.value = res.data.profile;
         media.value = res.data.profile.media;

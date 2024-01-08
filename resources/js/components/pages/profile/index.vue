@@ -1,7 +1,7 @@
 <template>
   <MainLayouts>
-    <div class=" w-full pt-10 px-4">
-        <div v-if="store.user.email_verified_at == null" role="alert" class="relative flex w-full px-4 py-4 text-base text-gray-900 border border-gray-900 rounded-lg font-regular">
+    <div v-if="store.user.email_verified_at == null" class=" w-full pt-10 px-4">
+        <div  role="alert" class="relative flex w-full px-4 py-4 text-base text-gray-900 border border-gray-900 rounded-lg font-regular">
             <div class="shrink-0">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
                 stroke="currentColor" class="w-6 h-6">
@@ -106,7 +106,7 @@ import axios from "axios";
 const profiles = ref([]);
 
 const getProfile = () => {
-    axios.get('/api/get-profiles').then((res) => {
+    axios.get('/get-profiles').then((res) => {
         console.log(res)
         profiles.value = res.data
     }).catch((error) => [
@@ -116,7 +116,7 @@ const getProfile = () => {
 
 const SendEmail = () => {
     Sent.value = 0
-      axios.post('/api/send-email').then((res) => {
+      axios.post('/send-email').then((res) => {
         console.log(res)
         Sent.value = 1
     }).catch((error) => {

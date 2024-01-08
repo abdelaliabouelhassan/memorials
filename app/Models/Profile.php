@@ -17,4 +17,8 @@ class Profile extends Model
     public function media(){
         return $this->hasMany(Media::class);
     }
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }

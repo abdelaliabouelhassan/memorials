@@ -109,13 +109,13 @@ const setActive = (index) => {
   const day = String(date.getDate()).padStart(2, '0');
 
   // Create the formatted date string
-  const formattedDate = `${year}.${month}.${day}`;
+  const formattedDate = `${day}.${month}.${year}`;
 
   return formattedDate;
 }
 
 const getComments = (status) => {
-    axios.get('/api/profile/'+ route.params.id +'/comments/' + status).then((res) => {
+    axios.get('/profile/'+ route.params.id +'/comments/' + status).then((res) => {
         comments.value = res.data
     }).catch((err) => {
         console.log(err)
@@ -123,7 +123,7 @@ const getComments = (status) => {
 }
 
 const ApproveComment = (id) => {
-     axios.post('/api/profile/'+ route.params.id +'/comments/approve',
+     axios.post('/profile/'+ route.params.id +'/comments/approve',
      {comment_id:id}
      ).then((res) => {
        getComments(step.value)
@@ -134,7 +134,7 @@ const ApproveComment = (id) => {
 
 const DeleteComment = (id) => {
     if(!confirm('are you sure you want to delete this comment?')) return;
-     axios.post('/api/profile/'+ route.params.id +'/comments/delete',
+     axios.post('/profile/'+ route.params.id +'/comments/delete',
      {comment_id:id}
      ).then((res) => {
         

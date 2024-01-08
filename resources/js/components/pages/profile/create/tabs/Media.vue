@@ -99,7 +99,7 @@ const RemoveFile = (item,index) => {
      return;
   }else{
       if(!confirm('are you sure you want to delete?')) return;
-      axios.post('/api/profile/'+ route.params.id +'/media/delete',{path:item.src}).then((res) => {
+      axios.post('/profile/'+ route.params.id +'/media/delete',{path:item.src}).then((res) => {
         console.log(res.data)
         store.profile.step2.images.splice(index,1)
     }).catch((err) => {
@@ -115,7 +115,7 @@ const Next = () => {
     if(!loading || store.profile.step2.images.length == 0) return;
     loading.value = true
     errors.value = []
-    axios.post('/api/profile/details/'+ route.params.id +'/media',store.profile.step2).then((res) => {
+    axios.post('/profile/details/'+ route.params.id +'/media',store.profile.step2).then((res) => {
         console.log(res)
         emit('next')
     }).catch((error) => {
@@ -135,7 +135,7 @@ const Next = () => {
 
 const getStep2 = () => {
    store.profile.step2.images = []
-    axios.get('/api/profile/'+ route.params.id +'/media').then((res) => {
+    axios.get('/profile/'+ route.params.id +'/media').then((res) => {
         console.log(res.data)
         res.data.forEach(element => {
           store.profile.step2.images.push({src:element.path,type:element.type})

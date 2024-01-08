@@ -63,7 +63,7 @@ const errors = ref([])
 const loading = ref(false)
 
 const getStep3 = () => {
-    axios.get('/api/profile/'+ route.params.id +'/details').then((res) => {
+    axios.get('/profile/'+ route.params.id +'/details').then((res) => {
         console.log(res)
         store.profile.step3.private = res.data.private ? true : false;
         store.profile.step3.password = res.data.password;
@@ -79,7 +79,7 @@ const Save = () => {
     if(!loading) return;
     loading.value = true
     errors.value = []
-    axios.post('/api/profile/'+ route.params.id +'/access/store',store.profile.step3).then((res) => {
+    axios.post('/profile/'+ route.params.id +'/access/store',store.profile.step3).then((res) => {
         console.log(res)
         router.push('/profile')
     }).catch((error) => {

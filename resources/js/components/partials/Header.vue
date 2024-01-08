@@ -1,5 +1,5 @@
 <template>
-    <div class=" w-full absolute top-0  md:border  left-0 p-4 z-20 backdrop-blur-xl" :class="{'bg-white':theme != 'dark'}">
+    <div class=" w-full absolute top-0  md:border  left-0 p-4 z-20 backdrop-blur-xl bg-black bg-opacity-50 md:bg-white" :class="{'bg-white':theme != 'dark'}">
         <div class=" w-full  items-center justify-between  md:hidden flex">
             <div>
                 <router-link to="/profile">
@@ -77,7 +77,7 @@
  }
 
   const logOut = () => {
-    axios.post('/api/logout').then((res) => {
+    axios.post('/logout').then((res) => {
         localStorage.removeItem('token');
         // Reset the axios Authorization header:
         axios.defaults.headers.common['Authorization'] = 'Bearer';

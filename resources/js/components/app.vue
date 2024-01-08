@@ -14,7 +14,7 @@
  const route = useRoute()
  const store = useStore();
  const getUser = () => {
-    axios.get('/api/user').then((res) => {
+    axios.get('/user').then((res) => {
         store.user = res.data
     }).catch((error) => {  
         if(route.path == '/') 

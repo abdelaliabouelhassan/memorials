@@ -203,7 +203,7 @@ const Next = () => {
     if(!loading) return;
     loading.value = true
     errors.value = []
-    axios.post('/api/profile/details/'+ route.params.id +'/store',store.profile.step1).then((res) => {
+    axios.post('/profile/details/'+ route.params.id +'/store',store.profile.step1).then((res) => {
         console.log(res)
         emit('next')
     }).catch((error) => {
@@ -222,7 +222,7 @@ const Next = () => {
 }
 
 const getStep1 = () => {
-    axios.get('/api/profile/'+ route.params.id +'/details').then((res) => {
+    axios.get('/profile/'+ route.params.id +'/details').then((res) => {
         console.log(res)
         store.profile.step1.image = res.data.image;
         store.profile.step1.fullname = res.data.fullname;
