@@ -183,8 +183,8 @@ const register = () => {
         success.value = true
         localStorage.setItem('token',res.data.token)
         setTimeout(() => {
-            router.push('/login')
-        },3000)
+            window.location.href =  '/profile'
+        },1500)
     }).catch((error) => {
         console.log(error)
         success.value = false

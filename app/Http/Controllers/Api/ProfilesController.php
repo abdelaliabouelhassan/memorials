@@ -244,6 +244,8 @@ class ProfilesController extends Controller
             $user_id = auth()->id();
         }
 
+        $profile = Profile::findOrFail($id);
+
         Comment::create([
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
@@ -253,8 +255,10 @@ class ProfilesController extends Controller
             'approved' => false,
         ]);
 
+
+
         //send email to profile owner
-        Mail::to('ab@gmail.com')->send(new CommentCreatedMail($request->comment));
+        Mail::to($profile->user->email)->send(new CommentCreatedMail($request->comment));
 
         return response()->json('comment created',200);
     }

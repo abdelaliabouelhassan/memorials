@@ -16,7 +16,7 @@ axios.interceptors.response.use(
     (error) => {
         if (error.response?.status === 401) {
             // Remove the token from local storage:
-           // localStorage.removeItem('token');
+              localStorage.removeItem('token');
             // Reset the axios Authorization header:
             //axios.defaults.headers.common['Authorization'] = 'Bearer';
             // Redirect the user to the login page:
