@@ -11,7 +11,7 @@
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                        <path stroke-linecap="round" stroke-linejoin="round" d="m6.75 7.5 3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0 0 21 18V6a2.25 2.25 0 0 0-2.25-2.25H5.25A2.25 2.25 0 0 0 3 6v12a2.25 2.25 0 0 0 2.25 2.25Z" />
                     </svg>
-                    <span class="ml-1">Pending comments</span>
+                    <span class="ml-1">{{$t('pending_comments')}}</span>
                     </a>
                 </li>
                 <li class="z-30 flex-auto text-center">
@@ -21,7 +21,7 @@
                      <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 0 1 .865-.501 48.172 48.172 0 0 0 3.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z" />
                     </svg>
 
-                    <span class="ml-1">Approved</span>
+                    <span class="ml-1">{{$t('approved')}}</span>
                     </a>
                 </li>
                
@@ -41,8 +41,8 @@
                     <span class="text-sm font-semibold text-gray-900 ">{{item.first_name + ' '+ item.last_name}}</span>
                     <span class="text-sm font-normal text-gray-500 ">{{formatDate(item.created_at)}}</span>
                 </div>
-                <div class="flex flex-col leading-1.5 p-4 border-gray-200 bg-gray-100 rounded-e-xl rounded-es-xl ">
-                    <p class="text-sm font-normal text-gray-900 ">{{item.comment}} </p>
+                <div class="flex flex-col leading-1.5 p-4 max-w-[16rem] sm:max-w-full border-gray-200 bg-gray-100 rounded-e-xl rounded-es-xl ">
+                    <p class="text-sm font-normal text-gray-900 break-words ">{{item.comment}} </p>
                 </div>
                
             </div>
@@ -63,7 +63,7 @@
 
             <div class=" w-full h-20 flex" v-if="comments.length == 0">
                 <div class=" m-auto">
-                    <h1>No {{ step == 0 ? 'Pending' : 'Approved'}} Comments</h1>
+                    <h1>{{$t('no')}} {{ step == 0 ? $t('pending') : $t('approved')}} {{$t('comments')}}</h1>
                 </div>
             </div>
 
@@ -71,7 +71,7 @@
       
            <div class=" w-full py-2">
              <router-link to="/profile" class=" w-full">
-                   <button class=" uppercase bg-white border-2 border-primary text-primary rounded-md hover:scale-y-110 duration-200 w-full py-2 font-Altivo text-lg">back</button>
+                   <button class=" uppercase bg-white border-2 border-primary text-primary rounded-md hover:scale-y-110 duration-200 w-full py-2 font-Altivo text-lg">{{$t('back')}}</button>
             </router-link>
           </div>
        </div>

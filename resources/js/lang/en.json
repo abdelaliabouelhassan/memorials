@@ -33,6 +33,12 @@
     "profile_private":" This profile is private.",
     "comment_successfully":"Comment successfully created. It will be displayed once approved by the profile owner.",
     "comment":"comment",
-    "create_comment":"Create Comment"
+    "create_comment":"Create Comment",
+    "pending_comments":"Pending Comments",
+    "approved":"Approved",
+    "no":"No",
+    "Pending":"pending",
+    "comments":"Comments",
+    "back":"back"
 }
   
