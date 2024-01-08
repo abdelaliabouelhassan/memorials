@@ -10,7 +10,7 @@
                 </div>
                 <div class=" flex flex-col items-start -space-y-1">
                     <span class=" text-white uppercase font-Altivo text-xl font-medium">{{profile.fullname}}</span>
-                    <span class=" text-white font-Inter text-base">☨ {{profile.birthday}} - {{profile.death}}</span>
+                    <span class=" text-white font-Inter text-base">☨ {{formatDate(profile.birthday)}} - {{formatDate(profile.death)}}</span>
                 </div>
             </div>
 
@@ -55,7 +55,7 @@
                         <span class="text-sm  text-white font-Altivo ">{{item.first_name + ' ' + item.last_name}}</span>
                         <span class="text-sm font-normal text-gray-300 ">{{formatDate(item.created_at)}}</span>
                     </div>
-                    <p class="text-sm font-normal py-2.5 text-white ">{{item.comment}}</p>
+                    <p class="text-sm font-normal py-2.5 text-white break-words ">{{item.comment}}</p>
                 
                 </div>
                     <!-- <div class=" w-full flex items-center space-x-2">
@@ -76,7 +76,7 @@
             <div class=" w-full" v-if="success">
                      <div
                         class="relative block w-full p-4 mb-4 text-base leading-5 text-white bg-green-500 rounded-lg opacity-100 font-regular">
-                        Comment successfully created. It will be displayed once approved by the profile owner.
+                        {{$t('comment_successfully')}}
                     </div>
             </div>
             <div class=" w-full">
@@ -92,7 +92,7 @@
                                         class="peer outline-none w-full h-11 bg-transparent text-white font-sans font-normal outline outline-0 focus:outline-0 disabled:bg-blue-gray-50 disabled:border-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 border focus:border-2 focus:border-t-transparent text-sm px-3 py-2.5 rounded-[7px] border-blue-gray-200 focus:border-gray-900"
                                         placeholder="" id="fullname" name="fullname" /><label for="fullname"
                                         class="flex w-full text-gray-950 h-full select-none pointer-events-none absolute left-0 font-normal !overflow-visible truncate peer-placeholder-shown:text-blue-gray-500 leading-tight peer-focus:leading-tight peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-gray-500 transition-all -top-1.5 peer-placeholder-shown:text-sm text-[11px] peer-focus:text-[11px] before:content[' '] before:block before:box-border before:w-2.5 before:h-1.5 before:mt-[6.5px] before:mr-1 peer-placeholder-shown:before:border-transparent before:rounded-tl-md before:border-t peer-focus:before:border-t-2 before:border-l peer-focus:before:border-l-2 before:pointer-events-none before:transition-all peer-disabled:before:border-transparent after:content[' '] after:block after:flex-grow after:box-border after:w-2.5 after:h-1.5 after:mt-[6.5px] after:ml-1 peer-placeholder-shown:after:border-transparent after:rounded-tr-md after:border-t peer-focus:after:border-t-2 after:border-r peer-focus:after:border-r-2 after:pointer-events-none after:transition-all peer-disabled:after:border-transparent peer-placeholder-shown:leading-[3.75] text-gray-500 peer-focus:text-gray-900 before:border-blue-gray-200 peer-focus:before:!border-gray-900 after:border-blue-gray-200 peer-focus:after:!border-gray-900">
-                                            First name*
+                                            {{$t('first_name')}}*
                                         </label>
                                     </div>
                             </div>
@@ -106,7 +106,7 @@
                                         class="peer outline-none w-full h-11 bg-transparent text-white font-sans font-normal outline outline-0 focus:outline-0 disabled:bg-blue-gray-50 disabled:border-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 border focus:border-2 focus:border-t-transparent text-sm px-3 py-2.5 rounded-[7px] border-blue-gray-200 focus:border-gray-900"
                                         placeholder="" id="lastname" name="lastname" /><label for="lastname"
                                         class="flex w-full text-gray-950 h-full select-none pointer-events-none absolute left-0 font-normal !overflow-visible truncate peer-placeholder-shown:text-blue-gray-500 leading-tight peer-focus:leading-tight peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-gray-500 transition-all -top-1.5 peer-placeholder-shown:text-sm text-[11px] peer-focus:text-[11px] before:content[' '] before:block before:box-border before:w-2.5 before:h-1.5 before:mt-[6.5px] before:mr-1 peer-placeholder-shown:before:border-transparent before:rounded-tl-md before:border-t peer-focus:before:border-t-2 before:border-l peer-focus:before:border-l-2 before:pointer-events-none before:transition-all peer-disabled:before:border-transparent after:content[' '] after:block after:flex-grow after:box-border after:w-2.5 after:h-1.5 after:mt-[6.5px] after:ml-1 peer-placeholder-shown:after:border-transparent after:rounded-tr-md after:border-t peer-focus:after:border-t-2 after:border-r peer-focus:after:border-r-2 after:pointer-events-none after:transition-all peer-disabled:after:border-transparent peer-placeholder-shown:leading-[3.75] text-gray-500 peer-focus:text-gray-900 before:border-blue-gray-200 peer-focus:before:!border-gray-900 after:border-blue-gray-200 peer-focus:after:!border-gray-900">
-                                            Last name*
+                                            {{$t('last_name')}}*
                                         </label>
                                     </div>
                             </div>
@@ -121,7 +121,7 @@
                             placeholder=" "></textarea>
                             <label
                             class="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-gray-900 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-gray-900 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-gray-900 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
-                             Comment
+                             {{$t('comment')}}
                             </label>
                            </div>
                         </div>
@@ -134,9 +134,9 @@
                                     <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
                                     <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
                                 </svg>
-                                <span class="sr-only">Loading...</span>
+                                <span class="sr-only">{{$t('loading')}}...</span>
                             </div>
-                            {{loading ?  '' :'Create Comment'}}    
+                            {{loading ?  '' :$t('create_comment')}}    
                      </button>
                 </div>
             </div>
@@ -230,6 +230,9 @@ import { useStore } from "@/stores/states.js"
         }
  }
 
+
+
+
  const formatDate = (inputDateString) => {
   const date = new Date(inputDateString);
  
@@ -238,7 +241,7 @@ import { useStore } from "@/stores/states.js"
   const day = String(date.getDate()).padStart(2, '0');
 
   // Create the formatted date string
-  const formattedDate = `${year}-${month}-${day}`;
+  const formattedDate = `${year}.${month}.${day}`;
 
   return formattedDate;
 }

@@ -30,6 +30,9 @@
     "profile_password":"This profile is protected with a password.",
     "unlock":"Unlock",
     "safeguarded":"Profiles are safeguarded with secure and encrypted access.",
-    "profile_private":" This profile is private."
+    "profile_private":" This profile is private.",
+    "comment_successfully":"Comment successfully created. It will be displayed once approved by the profile owner.",
+    "comment":"comment",
+    "create_comment":"Create Comment"
 }
   
