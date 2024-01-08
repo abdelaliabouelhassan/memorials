@@ -23,7 +23,7 @@ class LoginController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (auth()->attempt($credentials)) {
-            $token = auth()->user()->createToken('authToken')->plainTextToken;
+            $token = auth('sanctum')->user()->createToken('authToken')->plainTextToken;
             return response()->json(['token' => $token], 200);
         } else {
             return response()->json(['error' => 'Unauthorised, Wrong email or password'], 401);
@@ -32,8 +32,8 @@ class LoginController extends Controller
 
 
     public function Logout(){
-        auth()->user()->tokens()->delete();
         Auth::logout();
+        auth('sanctum')->user()->tokens()->delete();
         return response()->json([
             'message' => 'Logged out successfully'
         ], 200);
@@ -75,7 +75,7 @@ class LoginController extends Controller
 
         Auth::login($checkuser, true);
 
-        $token = auth()->user()->createToken('authToken')->plainTextToken;
+        $token = auth('sanctum')->user()->createToken('authToken')->plainTextToken;
        
 
         return redirect()->route('social-login',['token'=>$token]);
@@ -116,7 +116,7 @@ class LoginController extends Controller
 
         Auth::login($checkuser, true);
 
-        $token = auth()->user()->createToken('authToken')->plainTextToken;
+        $token = auth('sanctum')->user()->createToken('authToken')->plainTextToken;
        
 
         return redirect()->route('social-login',['token'=>$token]);
@@ -155,7 +155,7 @@ class LoginController extends Controller
 
         Auth::login($checkuser, true);
 
-        $token = auth()->user()->createToken('authToken')->plainTextToken;
+        $token = auth('sanctum')->user()->createToken('authToken')->plainTextToken;
        
 
         return redirect()->route('social-login',['token'=>$token]);

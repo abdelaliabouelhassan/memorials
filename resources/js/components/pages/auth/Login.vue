@@ -3,8 +3,8 @@
     <div class=" w-full h-full flex py-4 px-4">
         <div class=" m-auto space-y-4 w-full max-w-sm">
             <div class=" flex flex-col items-start space-y-2">
-                <h1 class=" text-[#524C57] text-2xl font-Altivo font-normal">Welcome Back 👋🏻</h1>
-                <span class=" text-[#87848B] text-lg font-Inter font-normal">Please sign-in to your account</span>
+                <h1 class=" text-[#524C57] text-2xl font-Altivo font-normal">{{$t('welcome_back')}}</h1>
+                <span class=" text-[#87848B] text-lg font-Inter font-normal">{{$t('please_sign_in')}}</span>
             </div>
 
              <div 
@@ -25,7 +25,7 @@
                     class="peer outline-none w-full h-11 bg-transparent text-blue-gray-700 font-sans font-normal outline outline-0 focus:outline-0 disabled:bg-blue-gray-50 disabled:border-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 border focus:border-2 focus:border-t-transparent text-sm px-3 py-2.5 rounded-[7px] border-blue-gray-200 focus:border-gray-900"
                     placeholder="" id="email" name="password" /><label for="email"
                     class="flex w-full h-full select-none pointer-events-none absolute left-0 font-normal !overflow-visible truncate peer-placeholder-shown:text-blue-gray-500 leading-tight peer-focus:leading-tight peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500 transition-all -top-1.5 peer-placeholder-shown:text-sm text-[11px] peer-focus:text-[11px] before:content[' '] before:block before:box-border before:w-2.5 before:h-1.5 before:mt-[6.5px] before:mr-1 peer-placeholder-shown:before:border-transparent before:rounded-tl-md before:border-t peer-focus:before:border-t-2 before:border-l peer-focus:before:border-l-2 before:pointer-events-none before:transition-all peer-disabled:before:border-transparent after:content[' '] after:block after:flex-grow after:box-border after:w-2.5 after:h-1.5 after:mt-[6.5px] after:ml-1 peer-placeholder-shown:after:border-transparent after:rounded-tr-md after:border-t peer-focus:after:border-t-2 after:border-r peer-focus:after:border-r-2 after:pointer-events-none after:transition-all peer-disabled:after:border-transparent peer-placeholder-shown:leading-[3.75] text-gray-500 peer-focus:text-gray-900 before:border-blue-gray-200 peer-focus:before:!border-gray-900 after:border-blue-gray-200 peer-focus:after:!border-gray-900">
-                        E-mail
+                        {{$t('email')}}
                     </label>
                 </div>  
                </div>
@@ -42,7 +42,7 @@
                     class="peer outline-none w-full h-11 bg-transparent text-blue-gray-700 font-sans font-normal outline outline-0 focus:outline-0 disabled:bg-blue-gray-50 disabled:border-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 border focus:border-2 focus:border-t-transparent text-sm px-3 py-2.5 rounded-[7px] border-blue-gray-200 focus:border-gray-900"
                     placeholder="" id="password" name="password" /><label for="password"
                     class="flex w-full h-full select-none pointer-events-none absolute left-0 font-normal !overflow-visible truncate peer-placeholder-shown:text-blue-gray-500 leading-tight peer-focus:leading-tight peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500 transition-all -top-1.5 peer-placeholder-shown:text-sm text-[11px] peer-focus:text-[11px] before:content[' '] before:block before:box-border before:w-2.5 before:h-1.5 before:mt-[6.5px] before:mr-1 peer-placeholder-shown:before:border-transparent before:rounded-tl-md before:border-t peer-focus:before:border-t-2 before:border-l peer-focus:before:border-l-2 before:pointer-events-none before:transition-all peer-disabled:before:border-transparent after:content[' '] after:block after:flex-grow after:box-border after:w-2.5 after:h-1.5 after:mt-[6.5px] after:ml-1 peer-placeholder-shown:after:border-transparent after:rounded-tr-md after:border-t peer-focus:after:border-t-2 after:border-r peer-focus:after:border-r-2 after:pointer-events-none after:transition-all peer-disabled:after:border-transparent peer-placeholder-shown:leading-[3.75] text-gray-500 peer-focus:text-gray-900 before:border-blue-gray-200 peer-focus:before:!border-gray-900 after:border-blue-gray-200 peer-focus:after:!border-gray-900">
-                        Password
+                        {{$t('password')}} 
                     </label>
 
                   <div class=" absolute right-2 top-2.5">
@@ -79,19 +79,21 @@
                             </span>
                         </label>
                         </div> 
-                        <label for="rememberme" class=" text-gray-400 text-lg font-Altivo cursor-pointer">Remember me</label>
+                        <label for="rememberme" class=" text-gray-400 text-lg font-Altivo cursor-pointer">
+                            {{$t('remember_me')}}
+                        </label>
                     </div>
                     <!-- <router-link to="/" class=" text-primary text-lg font-normal font-Altivo">Forgot Password</router-link> -->
                 </div>
 
                 <div class=" w-full py-4">
-                      <button :disabled='loading' @click="login" class=" uppercase text-white bg-primary rounded-md hover:scale-x-110 duration-200 w-full py-2 font-Altivo text-lg">login</button>
+                      <button :disabled='loading' @click="login" class=" uppercase text-white bg-primary rounded-md hover:scale-x-110 duration-200 w-full py-2 font-Altivo text-lg">{{$t('login')}}</button>
                 </div>
 
                 <div class="  w-full flex">
                     <p class=" m-auto text-[#87848B] text-lg font-Altivo font-normal">
-                        new on out platform?
-                        <router-link to="/register" class=" text-primary p-2">create account</router-link>
+                        {{$t('new_platform')}}
+                        <router-link to="/register" class=" text-primary p-2">{{$t('create_account')}}</router-link>
                     </p>
                 </div>
                 
@@ -103,7 +105,7 @@
                 <div class=" w-full border relative ">
                     <div class=" absolute w-full -top-[1.3rem] left-0 flex ">
                         <div class=" bg-white p-2 text-lg text-gray-400 font-Altivo font-normal m-auto">
-                            or
+                            {{$t('or')}}
                         </div>
                     </div>
                 </div>

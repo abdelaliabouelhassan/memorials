@@ -84,6 +84,8 @@
         store.user = [];
         // Redirect the user to the login page:
         window.location.href = '/'
+    }).catch((err) => {
+        window.location.href = '/'
     })
   }
 </script>
