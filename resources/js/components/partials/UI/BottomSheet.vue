@@ -188,7 +188,7 @@ import { useStore } from "@/stores/states.js"
     if(!loading) return;
     loading.value = true
     success.value = false
-    axios.post('/api/profile/comment/'+ props.profile.id+'/create',form.value).then((res) => {
+    axios.post('/profile/comment/'+ props.profile.id+'/create',form.value).then((res) => {
          success.value = true
          form.value.comment = ''
          errors.value = []
@@ -208,7 +208,7 @@ import { useStore } from "@/stores/states.js"
  }
 
  const loadComments = () => {
-    axios.get('/api/profile/'+ route.params.id +'/comments').then((res) => {
+    axios.get('/profile/'+ route.params.id +'/comments').then((res) => {
         comments.value = res.data
     }).catch((err) => {
         console.log(err)

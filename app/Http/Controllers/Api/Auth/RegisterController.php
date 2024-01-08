@@ -37,7 +37,7 @@ class RegisterController extends Controller
 
             Auth::login($user, true);
 
-            $token = auth('sanctum')->user()->createToken('authToken')->plainTextToken;
+            $token = auth()->user()->createToken('authToken')->plainTextToken;
 
             
             event(new Registered($user));
@@ -55,7 +55,7 @@ class RegisterController extends Controller
     }
 
     public function SendEmail(Request $request){
-        $user = auth('sanctum')->user();
+        $user = auth()->user();
         event(new Registered($user));
         return response()->json("email sent successfully",200);
     }

@@ -256,7 +256,7 @@ const getFileType = (fileType) => {
 
 
 const loadProfile = () => {
-    axios.get('/api/profile/'+ route.params.id +'/show').then((res) => {
+    axios.get('/profile/'+ route.params.id +'/show').then((res) => {
         
         profile.value = res.data.profile;
         media.value = res.data.profile.media;

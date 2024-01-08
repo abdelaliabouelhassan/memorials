@@ -106,7 +106,7 @@ import axios from "axios";
 const profiles = ref([]);
 
 const getProfile = () => {
-    axios.get('/api/get-profiles').then((res) => {
+    axios.get('/get-profiles').then((res) => {
         console.log(res)
         profiles.value = res.data
     }).catch((error) => [
@@ -116,7 +116,7 @@ const getProfile = () => {
 
 const SendEmail = () => {
     Sent.value = 0
-      axios.post('/api/send-email').then((res) => {
+      axios.post('/send-email').then((res) => {
         console.log(res)
         Sent.value = 1
     }).catch((error) => {
