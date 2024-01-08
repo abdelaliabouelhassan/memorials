@@ -1,6 +1,6 @@
 <template>
   <MainLayouts :theme="showPasseord ? 'password' :'dark'" class="">
-   <div class=" w-full h-full" v-if="!isPrivate && !showPasseord">
+   <div class=" w-full h-full " v-if="!isPrivate && !showPasseord">
      <div v-if="mediaIndexMax > 0">
         <img v-if="getFileType(media[mediaIndex].type) == 'image'" :src="media[mediaIndex].path" class="  w-full h-full object-cover absolute top-0 left-0 " alt="">
         <video v-if="getFileType(media[mediaIndex].type) == 'video'" :src="media[mediaIndex].path" class=" w-full h-full absolute object-cover" muted autoplay></video>

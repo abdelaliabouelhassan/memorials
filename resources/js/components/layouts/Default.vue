@@ -1,5 +1,5 @@
 <template>
-  <div class=" w-full h-screen overflow-hidden  relative ">
+  <div :class="{'h-[90vh] md:h-screen':safari}" class=" w-full h-screen overflow-hidden  relative ">
    <div class=" w-full max-w-lg md:max-w-full sm:border-2 h-full max-h-full mx-auto relative">
      <Header @openMenu='openMenu' :theme='theme' /> 
      <div class=" w-full max-w-lg mx-auto h-full pt-[3.2rem] md:border  relative" :class="{'pb-20':theme != 'dark'}">
@@ -37,9 +37,36 @@
  import Header from '@/components/partials/Header.vue'
  import Footer from '@/components/partials/Footer.vue'
  import axios from 'axios'
- import { ref } from 'vue'
+ import { onMounted, ref } from 'vue'
  import { useRouter } from 'vue-router';
  import { useStore } from "@/stores/states.js"
+ 
+ const safari = ref(null)
+ const   getBrowserName = () => {
+   
+     const userAgent = navigator.userAgent;
+
+      if (userAgent.indexOf('Chrome') !== -1) {
+       safari.value = false
+       return 'Chrome';
+      } else if (userAgent.indexOf('Safari') !== -1) {
+       safari.value = true
+       return 'Safari';
+      } else if (userAgent.indexOf('Firefox') !== -1) {
+       safari.value = false
+       return 'Firefox';
+      } else if (userAgent.indexOf('Edge') !== -1) {
+       safari.value = false
+       return 'Edge';
+      } else if (userAgent.indexOf('MSIE') !== -1 || userAgent.indexOf('Trident/') !== -1) {
+        safari.value = false
+        return 'MSIE';
+      } else {
+       safari.value = false
+       return 'none';
+      }
+      
+}
 
  const store = useStore()
  const router = useRouter();
@@ -52,7 +79,7 @@
   }
 
   const logOut = () => {
-    axios.post('/logout').then((res) => {
+    axios.post('/api/logout').then((res) => {
         localStorage.removeItem('token');
         // Reset the axios Authorization header:
         axios.defaults.headers.common['Authorization'] = 'Bearer';
@@ -61,4 +88,8 @@
         window.location.href = '/'
     })
   }
+
+  onMounted(() => {
+    console.log(getBrowserName())
+  })
 </script>
