@@ -39,6 +39,26 @@
     "no":"No",
     "Pending":"pending",
     "comments":"Comments",
-    "back":"back"
+    "back":"back",
+    "details":"Details",
+    "media":"Media",
+    "accesses":"Accesses",
+    "profile_image":"Profile Image",
+    "full_name":"Full Name",
+    "primary_place_residence":"Primary place of residence",
+    "religious_affiliation":"Religious affiliation",
+    "date_of_birthday":"Date of Birthday",
+    "date_of_death": "Date of Death",
+    "profession":"Profession",
+    "miscellaneous":"Miscellaneous",
+    "description":"Description",
+    "next":"Next",
+    "Upload_files":"Upload files",
+    "multiple":"multiple",
+    "make_it_private":"Make it Private",
+    "making_it_private_only":"By making it private, only you will have access.",
+    "add_password":"Add Password",
+    "bg_adding_password":"By adding a password, you will be prompted for it to access your profile.",
+    "save":"save"
 }
   
