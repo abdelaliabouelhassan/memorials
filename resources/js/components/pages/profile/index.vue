@@ -10,8 +10,8 @@
                 </path>
                 </svg>
             </div>
-            <div class="ml-3 mr-12">Your email is not verified. We sent you an email. <a href="javascript:void(0)" class=" text-primary text-lg  underline" @click="SendEmail" v-if="Sent == null"> send it again</a> 
-              <span v-else-if="Sent == 0">Sending...</span>
+            <div class="ml-3 mr-12">{{$t('not_verified')}} <a href="javascript:void(0)" class=" text-primary text-lg  underline" @click="SendEmail" v-if="Sent == null"> send it again</a> 
+              <span v-else-if="Sent == 0">{{$t('sending')}}...</span>
             </div>
         </div>
     </div>
@@ -41,9 +41,9 @@
                         clip-rule="evenodd"></path>
                     </svg></div>
                     <div class="ml-3 mr-12">
-                    <p class="block font-sans text-base antialiased font-medium leading-relaxed text-inherit">You currently do not have any profile</p>
+                    <p class="block font-sans text-base antialiased font-medium leading-relaxed text-inherit">{{$t('currently_not_have_profile')}}</p>
                     <ul class="mt-2 ml-2 list-disc list-inside">
-                        <li>Buy profile from here <a href="" target="_blank" class=" text-green-500 hover:underline text-lg font-Altivo">buy now</a></li>
+                        <li>{{$t('buy_profile_from')}} <a href="" target="_blank" class=" text-green-500 hover:underline text-lg font-Altivo">{{$t('buy_now')}}</a></li>
                     </ul>
                     </div>
                 </div>
@@ -63,7 +63,7 @@
                     <button class=" group relative" v-if="!profile.step_one_completed || !profile.step_two_completed">
                           <div 
                             class="absolute  ransition-all scale-0 group-hover:scale-100 duration-200 -left-16 -top-10 z-50 whitespace-normal break-words rounded-lg bg-black py-1.5 px-3 font-sans text-sm font-normal text-white focus:outline-none">
-                             <span class=" whitespace-nowrap text-lg font-Altivo">Incomplete Profile.</span>
+                             <span class=" whitespace-nowrap text-lg font-Altivo">{{$t('incomplete_profile')}}</span>
                         </div>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-orange-300">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" />

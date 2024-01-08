@@ -20,6 +20,12 @@
     "my_profiles":"my profiles",
     "unforgettable_moments":"unforgettable moments",
     "eternal_memories": "eternal memories",
-    "login_to_manage_text": "log in to manage your soulstones or buy a soul mirror to preserve the memories of your loved ones."
+    "login_to_manage_text": "log in to manage your soulstones or buy a soul mirror to preserve the memories of your loved ones.",
+    "not_verified":"Your email is not verified. We sent you an email.",
+    "sending":"Sending",
+    "currently_not_have_profile":"You currently do not have any profile",
+    "buy_profile_from":"Buy profile from here",
+    "buy_now":"buy now",
+    "incomplete_profile":"Incomplete Profile."
 }
   
