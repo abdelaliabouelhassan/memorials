@@ -73,7 +73,7 @@
                         </svg>
 
                         </div>
-                        <input placeholder="password"
+                        <input :placeholder="$t('password')"
                         v-model="password"
                         type="password"
                         :class="{'border-red-500':passwordError != ''}"

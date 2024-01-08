@@ -33,7 +33,7 @@
                 </svg>
                 <span class="sr-only">Loading...</span>
             </div>
-            {{loading ?  '' :'Next'}}
+            {{loading ?  '' : $t('next')}}
             
         </button>
 

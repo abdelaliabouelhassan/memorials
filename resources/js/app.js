@@ -16,7 +16,7 @@ const pinia = createPinia()
 import enLocale from './lang/en.json'
 import deLocale from './lang/de.json'
 const i18n = createI18n({
-    locale: 'en',
+    locale: 'de',
     messages: {
       en: enLocale,
       de:deLocale
