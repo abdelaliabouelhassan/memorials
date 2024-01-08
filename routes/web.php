@@ -29,7 +29,7 @@ Route::get('/social-login/{token}',function($token){
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
     $request->fulfill();
     return redirect('/');
-})->middleware(['auth'])->name('verification.verify');
+})->middleware(['auth:sanctum'])->name('verification.verify');
 
 
 Route::get('/{any}', function () {
