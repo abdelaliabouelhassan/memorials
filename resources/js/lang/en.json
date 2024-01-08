@@ -26,6 +26,10 @@
     "currently_not_have_profile":"You currently do not have any profile",
     "buy_profile_from":"Buy profile from here",
     "buy_now":"buy now",
-    "incomplete_profile":"Incomplete Profile."
+    "incomplete_profile":"Incomplete Profile.",
+    "profile_password":"This profile is protected with a password.",
+    "unlock":"Unlock",
+    "safeguarded":"Profiles are safeguarded with secure and encrypted access.",
+    "profile_private":" This profile is private."
 }
   

@@ -50,7 +50,7 @@
                 </svg>
             </div>
             <h5 class="block font-sans text-xl antialiased font-semibold leading-snug tracking-normal text-white">
-             This profile is protected with a password.
+             {{$t('profile_password')}}
             </h5>
         </div>
         <div class="p-6">
@@ -63,7 +63,7 @@
                 <form class="flex flex-col gap-4 mt-12">
                     <div class="my-3">
                     <p class="block mb-2 font-sans text-sm antialiased font-medium leading-normal text-blue-gray-900">
-                       Password
+                       {{$t('password')}}
                     </p>
                     <div class="relative h-10 w-full min-w-[200px]">
                         <div
@@ -88,7 +88,7 @@
                     @click="Unlock"
                     class="select-none rounded-lg bg-primary py-3.5 px-7 text-center align-middle font-sans text-sm font-bold uppercase text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                     type="button">
-                     Unlock
+                     {{$t('unlock')}}
                     </button>
                     <p
                     class="flex items-baseline justify-center gap-2 mt-2 font-sans text-sm antialiased font-medium leading-normal text-gray-700 opacity-60">
@@ -98,7 +98,7 @@
                         d="M12 1.5a5.25 5.25 0 00-5.25 5.25v3a3 3 0 00-3 3v6.75a3 3 0 003 3h10.5a3 3 0 003-3v-6.75a3 3 0 00-3-3v-3c0-2.9-2.35-5.25-5.25-5.25zm3.75 8.25v-3a3.75 3.75 0 10-7.5 0v3h7.5z"
                         clip-rule="evenodd"></path>
                     </svg>
-                      Profiles are safeguarded with secure and encrypted access.
+                      {{$t('safeguarded')}}
                     </p>
                 </form>
                 </div>
@@ -115,7 +115,7 @@
                 </svg>
             </div>
             <h5 class="block font-sans text-xl antialiased font-semibold leading-snug tracking-normal text-white">
-             This profile is private.
+            {{$t('profile_private')}}
             </h5>
         </div>
         
