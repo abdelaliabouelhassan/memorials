@@ -22,7 +22,7 @@ class LoginController extends Controller
 
         $credentials = $request->only('email', 'password');
 
-        if (auth()->attempt($credentials)) {
+        if (auth()->attempt($credentials,true)) {
             $token = auth('sanctum')->user()->createToken('authToken')->plainTextToken;
             return response()->json(['token' => $token], 200);
         } else {
