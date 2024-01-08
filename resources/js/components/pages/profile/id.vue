@@ -5,7 +5,7 @@
         <img v-if="getFileType(media[mediaIndex].type) == 'image'" :src="media[mediaIndex].path" class="  w-full h-full object-cover absolute top-0 left-0 " alt="">
         <video v-if="getFileType(media[mediaIndex].type) == 'video'" :src="media[mediaIndex].path" class=" w-full h-full absolute object-cover" muted autoplay></video>
     </div>
-    <div class=" w-full h-full z-10 relative backdrop-blur-xl py-4 px-4 space-y-8 pt-10 ">
+    <div class=" w-full h-full z-10 relative backdrop-blur-xl py-4 px-4 space-y-8 pt-10 " style="background: linear-gradient(180deg, rgba(0,0,0,0.7623643207282913) 0%, rgba(0,0,0,0.18533350840336138) 100%)">
          <div class=" w-full max-w-sm mx-auto">
             <div class="w-full flex items-center space-x-4">
             <button @click="prev">
