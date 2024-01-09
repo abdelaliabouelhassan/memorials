@@ -32,15 +32,15 @@
     "src": "public/fonts/altivo-ultra.otf"
   },
   "resources/css/app.css": {
-    "file": "assets/app-cZBM_40W.css",
+    "file": "assets/app-dgd3VB5_.css",
     "isEntry": true,
     "src": "resources/css/app.css"
   },
   "resources/js/app.js": {
     "css": [
-      "assets/app-FFA15yW4.css"
+      "assets/app-QEOiTbr4.css"
     ],
-    "file": "assets/app-r956gSej.js",
+    "file": "assets/app-Qte9hlyH.js",
     "isEntry": true,
     "src": "resources/js/app.js"
   }

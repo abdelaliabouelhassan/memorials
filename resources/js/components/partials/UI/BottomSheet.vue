@@ -10,7 +10,7 @@
                 </div>
                 <div class=" flex flex-col items-start -space-y-1">
                     <span class=" text-white uppercase font-Altivo text-xl font-medium">{{profile.fullname}}</span>
-                    <span class=" text-white font-Inter text-base">✟ {{formatDate(profile.birthday)}} - {{formatDate(profile.death)}}</span>
+                    <span class=" text-white font-Inter text-base">{{formatDate(profile.birthday)}} - {{formatDate(profile.death)}} ✟</span>
                 </div>
             </div>
 

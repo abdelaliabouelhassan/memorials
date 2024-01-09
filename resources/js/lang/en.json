@@ -60,6 +60,7 @@
     "add_password":"Add Password",
     "bg_adding_password":"By adding a password, you will be prompted for it to access your profile.",
     "save":"save",
-    "send_it_again":"send it again"
+    "send_it_again":"send it again",
+    "logout" : "logout"
 }
   

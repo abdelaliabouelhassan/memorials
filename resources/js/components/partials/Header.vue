@@ -45,10 +45,16 @@
                             <path fill-rule="evenodd" d="M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z" clip-rule="evenodd" />
                             </svg>
                 </router-link>
-                 <button @click="logOut" v-if="store.user.email" class="  text-primary  flex hover:scale-y-110 duration-200">
+                 <button @click="logOut" v-if="store.user.email" class=" relative group  text-primary  flex hover:scale-y-110 duration-200">
                         <svg xmlns="http://www.w3.org/2000/svg"  fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 m-auto  h-10">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15M12 9l-3 3m0 0 3 3m-3-3h12.75" />
                     </svg>
+
+                     <div 
+                            class="absolute  ransition-all scale-0 group-hover:scale-100 duration-200 right-10 -top-0 z-50 whitespace-normal break-words rounded-lg bg-black py-1.5 px-3 font-sans text-sm font-normal text-white focus:outline-none">
+                             <span class=" whitespace-nowrap text-lg font-Altivo">{{$t('logout')}}</span>
+                        </div>
+                        
                 </button>
              </div>
             </div>

@@ -60,5 +60,6 @@
     "add_password": "Passwort hinzufügen",
     "bg_adding_password": "Durch Hinzufügen eines Passworts werden Sie dazu aufgefordert, darauf zuzugreifen Ihr Profil.",
     "save": "Speichern",
-    "send_it_again":"sende es erneut"
+    "send_it_again":"sende es erneut",
+    "logout" : "Ausloggen"
 }
