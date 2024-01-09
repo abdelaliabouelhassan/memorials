@@ -1,5 +1,5 @@
 <template>
-  <div :class="{'h-[90vh] md:h-screen':safari}" class=" w-full h-screen overflow-hidden  relative ">
+  <div :class="{'h-[90vh] md:h-screen':safari,'h-screen':!safari}" class=" w-full  overflow-hidden  relative ">
    <div class=" w-full max-w-lg md:max-w-full sm:border-2 h-full max-h-full mx-auto relative">
      <Header @openMenu='openMenu' :theme='theme' /> 
      <div class=" w-full max-w-lg mx-auto h-full pt-[3.2rem] md:border  relative" :class="{'pb-20':theme != 'dark'}">
