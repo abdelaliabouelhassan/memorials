@@ -64,7 +64,7 @@
                         </label>
                   </div>
         </div>
-        <div class=" w-full grid grid-cols-2 gap-4">
+        <div class=" w-full grid grid-cols-1 sm:grid-cols-2 gap-4">
              <div class=" flex flex-col items-start">
                   <span class=" text-red-500 font-Altivo text-base" v-if="errors.birthday">{{errors.birthday[0]}}</span>
                 <div class="relative h-10 w-full min-w-[200px]">
