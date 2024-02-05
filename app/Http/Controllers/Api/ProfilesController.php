@@ -231,6 +231,28 @@ class ProfilesController extends Controller
       
     }
 
+    public function AssignProfile($code){
+        $qrCode = QrCode::where('code', $code)->first();
+        if (!$qrCode)  abort(404);
+        $profile =  Profile::where('qrcode_id', $qrCode->id)->first();
+        if($profile)  return view('welcome');
+
+        if(auth()->check()){
+            Profile::create([
+                'user_id' => auth()->id(),
+                'qrcode_id' => $qrCode->id
+            ]);
+            $qrCode->user_id = auth()->id();
+            $qrCode->save();
+            session()->forget('qrcode');
+            return redirect('/');
+        }else{
+           session(['qrcode' => $code]);
+           return redirect('/login');
+        }
+       
+    }
+
     public function CreateComment(Request $request,$id){
         $request->validate([
             'first_name' => 'required|min:2|max:20',

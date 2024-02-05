@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Profile;
+use App\Models\QrCode;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
@@ -38,7 +40,7 @@ class RegisterController extends Controller
             Auth::login($user, true);
 
             $token = auth()->user()->createToken('authToken')->plainTextToken;
-
+            $this->AssingProfile($user->id);
             
             event(new Registered($user));
             
@@ -58,5 +60,22 @@ class RegisterController extends Controller
         $user = auth()->user();
         event(new Registered($user));
         return response()->json("email sent successfully",200);
+    }
+
+
+    public function AssingProfile($user_id){
+        $code = session('qrcode');
+        if(!$code) return;
+        $qrCode = QrCode::where('code', $code)->first();
+        if (!$qrCode) return;
+        $profile =  Profile::where('qrcode_id', $qrCode->id)->first();
+        if($profile)  return;
+        Profile::create([
+            'user_id' => $user_id,
+            'qrcode_id' => $qrCode->id
+        ]);
+        $qrCode->user_id = auth()->id();
+        $qrCode->save();
+        session()->forget('qrcode');     
     }
 }

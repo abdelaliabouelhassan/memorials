@@ -61,5 +61,14 @@
     "bg_adding_password": "Durch Hinzufügen eines Passworts werden Sie dazu aufgefordert, darauf zuzugreifen Ihr Profil.",
     "save": "Speichern",
     "send_it_again":"sende es erneut",
-    "logout" : "Ausloggen"
+    "logout" : "Ausloggen",
+    "please_email":"Bitte geben Sie Ihre E-Mail-Adresse an, und wir senden Ihnen einen Link zum Zurücksetzen Ihres Passworts.",
+    "forgot_password":"Passwort vergessen?",
+    "fpassword":"Passwort vergessen",
+    "submit":"senden",
+    "reset_password_sent":"A Reset-Passwort-Link wurde erfolgreich an Ihre E-Mail-Adresse gesendet.",
+    "change_password":"Ändere dein Passwort",
+    "reset_successfully":"Ihr Passwort wurde erfolgreich zurückgesetzt.",
+    "password_confirmation":"Passwortbestätigung",
+    "reset_password":"Passwort zurücksetzen"
 }

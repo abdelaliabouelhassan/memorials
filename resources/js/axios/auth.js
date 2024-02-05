@@ -20,7 +20,10 @@ axios.interceptors.response.use(
             // Reset the axios Authorization header:
             //axios.defaults.headers.common['Authorization'] = 'Bearer';
             // Redirect the user to the login page:
-            if (!window.location.pathname.startsWith('/profile/')) {
+            if (!window.location.pathname.startsWith('/profile/')
+               && !window.location.pathname.includes('forgot-password')
+               && !window.location.pathname.includes('password/reset')
+            ) {
                 // Redirect the user to the login page:
                 router.push({ name: 'login' });
             }

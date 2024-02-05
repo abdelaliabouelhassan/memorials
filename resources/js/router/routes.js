@@ -10,10 +10,14 @@ import Profile from '@/components/pages/profile/index.vue'
 import ProfileId from '@/components/pages/profile/id.vue'
 import CreateProfile from '@/components/pages/profile/create/index.vue'
 import ProfileComments from '@/components/pages/profile/comments/index.vue'
+import ForgotPassword from '@/components/pages/auth/ForgotPassword.vue'
+import RestPassword from '@/components/pages/auth/RestPassword.vue'
 const routes = [
   { path: '/', component: Index, name: 'index' },
   { path: '/login', component: Login, name: 'login',beforeEnter: Auth },
   { path: '/register', component: Register, name: 'register',beforeEnter: Auth },
+  { path: '/forgot-password', component: ForgotPassword, name: 'forgot-password',beforeEnter: Auth },
+  { path: '/password/reset/:token', component: RestPassword, name: 'reset-password',beforeEnter: Auth },
   { path: '/profile', component: Profile, name: 'profile', beforeEnter: requireAuth },
   { path: '/profile/:id', component: ProfileId, name: 'profile-id' },
   { path: '/profile/:id/edit', component: CreateProfile, name: 'profile-create' },

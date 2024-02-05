@@ -1,5 +1,5 @@
 <template>
-    <div class=" w-full absolute top-0  md:border  left-0 p-4 z-20 backdrop-blur-xl bg-black bg-opacity-50 md:bg-white" :class="{'bg-white':theme != 'dark'}">
+    <div class=" w-full absolute top-0  md:border  left-0 p-4 z-20 backdrop-blur-xl bg-black bg-opacity-50 md:bg-white"  :class="{'bg-white':theme != 'dark'}">
         <div class=" w-full  items-center justify-between  md:hidden flex">
             <div>
                 <router-link to="/profile">
@@ -34,9 +34,9 @@
                      <img src="/images/LOGO_BLUE.png" class=" max-w-[12rem] object-cover" alt="logo blue">
                  </router-link>
                     <router-link to="/profile">MEIN KONTO</router-link>
-                    <router-link to="/">KONTAKT</router-link>
-                    <router-link to="/">HILFE</router-link>
-                    <router-link to="/">SHOP</router-link>
+                    <a href="https://seelenstein.de/pages/contact" target="_blank">KONTAKT</a>
+                    <a  href="https://seelenstein.de/pages/hilfe" target="_blank">HILFE</a>
+                    <a  href="https://seelenstein.de/products/der-seelenstein" target="_blank">SHOP</a>
             </div>
              <div>
              <div class=" flex items-center space-x-2">

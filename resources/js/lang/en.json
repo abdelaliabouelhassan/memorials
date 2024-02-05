@@ -61,6 +61,15 @@
     "bg_adding_password":"By adding a password, you will be prompted for it to access your profile.",
     "save":"save",
     "send_it_again":"send it again",
-    "logout" : "logout"
+    "logout" : "logout",
+    "please_email":"Please provide your email, and we'll send you a link to reset your password.",
+    "forgot_password":"Forgot Your Passowrd?",
+    "fpassword":"Forgot Password",
+    "submit":"submit",
+    "reset_password_sent":"A reset password link has been successfully sent to your email address.",
+    "change_password":"Change your password",
+    "reset_successfully":"Your Password reset successfully.",
+    "password_confirmation":"password confirmation",
+    "reset_password":"Reset Password"
 }
   

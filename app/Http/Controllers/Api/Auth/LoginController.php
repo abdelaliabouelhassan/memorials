@@ -3,10 +3,15 @@
 namespace App\Http\Controllers\Api\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Profile;
+use App\Models\QrCode;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Str;
 
@@ -15,6 +20,8 @@ class LoginController extends Controller
     //
 
     public function Login(Request $request){
+
+       
         $request->validate([
             'email' => 'required|email',
             'password' => 'required',
@@ -24,10 +31,27 @@ class LoginController extends Controller
 
         if (auth()->attempt($credentials,true)) {
             $token = auth()->user()->createToken('authToken')->plainTextToken;
+            $this->AssingProfile();
             return response()->json(['token' => $token], 200);
         } else {
             return response()->json(['error' => 'Unauthorised, Wrong email or password'], 401);
         }
+    }
+
+    public function AssingProfile(){
+        $code = session('qrcode');
+        if(!$code) return;
+        $qrCode = QrCode::where('code', $code)->first();
+        if (!$qrCode) return;
+        $profile =  Profile::where('qrcode_id', $qrCode->id)->first();
+        if($profile)  return;
+        Profile::create([
+            'user_id' => auth()->id(),
+            'qrcode_id' => $qrCode->id
+        ]);
+        $qrCode->user_id = auth()->id();
+        $qrCode->save();
+        session()->forget('qrcode');     
     }
 
 

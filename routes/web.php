@@ -17,7 +17,9 @@ use App\Http\Controllers\Api\ProfilesController;
 |
 */
 
-
+Route::get('/test',function(){
+    return route('password.email');
+});
 
 Route::get('/google/callback',[LoginController::class,'handleGoogleCallback']);
 Route::get('/twitter/callback',[LoginController::class,'handleTwitterCallback']);
@@ -65,7 +67,7 @@ Route::group(['middleware' => 'auth'], function () {
 Route::get('/profile/{code}/show', [ProfilesController::class,'ShowProfile']);
 Route::post('/profile/comment/{id}/create', [ProfilesController::class,'CreateComment']);
 Route::get('/profile/{code}/comments', [ProfilesController::class,'GetComments']);
-
+Route::get('/profile/{code}',[ProfilesController::class,'AssignProfile']);
 
 Route::get('/{any}', function () {
     return view('welcome');

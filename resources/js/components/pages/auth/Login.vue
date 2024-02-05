@@ -83,7 +83,7 @@
                             {{$t('remember_me')}}
                         </label>
                     </div>
-                    <!-- <router-link to="/" class=" text-primary text-lg font-normal font-Altivo">Forgot Password</router-link> -->
+                    <router-link to="/forgot-password" class=" text-primary text-base font-normal font-Altivo">{{$t('fpassword')}}</router-link>
                 </div>
 
                 <div class=" w-full py-4">
