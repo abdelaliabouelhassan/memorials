@@ -1,5 +1,5 @@
 <template>
-    <div class=" w-full flex items-center  md:border justify-between absolute z-20 -bottom-[0.1rem] bg-white p-4">
+    <div class=" w-full flex items-center  md:border justify-between absolute z-20 -bottom-[0.1rem] bg-white py-7 md:py-4 px-4">
         <div class=" flex items-center space-x-3">
           <a href="https://seelenstein.de/pages/datenschutz" class=" text-primary text-sm font-Altivo" target="_blank">Datenschutz</a>
           <a href="https://seelenstein.de/pages/impressum" target="_blank" class=" text-primary text-sm font-Altivo">Impressum</a>

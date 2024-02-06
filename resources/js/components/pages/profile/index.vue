@@ -15,7 +15,7 @@
             </div>
         </div>
     </div>
-    <div class=" w-full h-full flex flex-col items-start space-y-8 py-8 px-4 overflow-hidden">
+    <div class=" w-full h-full flex flex-col items-start overflow-x-hidden space-y-8 py-8 px-4 ">
         <div class=" flex items-center space-x-4">
             <div class=" w-24 h-24 rounded-full bg-[#F4EFEF] p-2 shadow">
                 <div class=" w-full h-full rounded-full bg-white overflow-hidden flex">
@@ -29,7 +29,7 @@
             </div>
         </div>
 
-
+      <Alert v-if="store.qrcode_claimed" message='Dein Seelenstein wurde erfolgreich hinzugefügt. Du kannst das Profil nun bearbeiten.'/>
         <div class=" w-full" v-if="profiles.length == 0">
               <div role="alert"
                     class="relative flex w-full px-4 py-4 text-base text-gray-900 border border-gray-900 rounded-lg font-regular"
@@ -50,7 +50,7 @@
         </div>
        
 
-        <div class=" w-full flex flex-col items-start space-y-4">
+        <div class=" w-full flex flex-col items-start space-y-4 pb-7">
             <div v-for="(profile,index,key) in profiles" :key="key" :class="{'ring':!profile.step_one_completed || !profile.step_two_completed}" class=" w-full  ring-red-400 bg-[#F2F2F1] rounded-md flex items-center justify-between px-5 shadow py-7">
                 <div class=" flex items-center space-x-2">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8 text-primary">
@@ -98,6 +98,7 @@
 import MainLayouts from "@/components/layouts/Default.vue";
 import { onMounted, ref } from "vue";
 import { useStore } from "@/stores/states.js"
+import Alert from '@/components/partials/UI/Alert.vue'
 const Sent = ref(null)
 const store = useStore()
 

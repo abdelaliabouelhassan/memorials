@@ -12,6 +12,7 @@
                 class="relative block w-full p-4 mb-4 text-base leading-5 text-white bg-red-500 rounded-lg opacity-100 font-regular">
                 {{unauthorized}}
             </div>
+            <Alert v-if="store.qrcode_assiged" message='Bitte erstelle einen Account oder logge dich ein um Deinen Seelenstein zu beanspruchen.'/>
 
             <div class=" w-full space-y-4 pt-14 ">
                
@@ -60,7 +61,7 @@
                 </div>
               </div>
 
-                <div class=" w-full flex items-center justify-between">
+                <div class=" w-full flex flex-col items-start space-y-4">
                     <div class=" flex items-center ">
                         <div class="inline-flex items-center">
                         <label class="relative flex items-center pr-3 rounded-full cursor-pointer" htmlFor="checkbox">
@@ -83,7 +84,7 @@
                             {{$t('remember_me')}}
                         </label>
                     </div>
-                    <router-link to="/forgot-password" class=" text-primary text-base font-normal font-Altivo">{{$t('fpassword')}}</router-link>
+                    <router-link to="/forgot-password" class=" text-primary text-lg font-normal font-Altivo">{{$t('fpassword')}}</router-link>
                 </div>
 
                 <div class=" w-full py-4">
@@ -139,6 +140,9 @@ import MainLayouts from "@/components/layouts/Default.vue";
 import { onMounted,ref } from "vue";
 import { useRouter } from 'vue-router';
 import axios from 'axios'
+import Alert from '@/components/partials/UI/Alert.vue'
+import { useStore } from "@/stores/states.js"
+const store = useStore();
 const showPassword = ref(false)
 const router = useRouter();
 const form = ref({

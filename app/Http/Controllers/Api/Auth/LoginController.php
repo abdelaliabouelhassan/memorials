@@ -51,6 +51,7 @@ class LoginController extends Controller
         ]);
         $qrCode->user_id = auth()->id();
         $qrCode->save();
+        session(['qrcode_status' => 'claimed']);
         session()->forget('qrcode');     
     }
 

@@ -79,12 +79,14 @@
   }
 
   const logOut = () => {
-    axios.post('/api/logout').then((res) => {
+    axios.post('/logout').then((res) => {
         localStorage.removeItem('token');
         // Reset the axios Authorization header:
         axios.defaults.headers.common['Authorization'] = 'Bearer';
         store.user = [];
         // Redirect the user to the login page:
+        window.location.href = '/'
+    }).catch((err) => {
         window.location.href = '/'
     })
   }

@@ -13,6 +13,7 @@
                 {{$t('account_successfully_created')}}
             </div>
 
+             <Alert v-if="store.qrcode_assiged" message='Bitte erstelle einen Account oder logge dich ein um Deinen Seelenstein zu beanspruchen.'/>
 
             <div>
 
@@ -159,9 +160,12 @@
 
 <script setup>
 import MainLayouts from "@/components/layouts/Default.vue";
+import Alert from '@/components/partials/UI/Alert.vue'
 import { onMounted, ref } from "vue";
 import { useRouter } from 'vue-router';
 import axios from 'axios'
+import { useStore } from "@/stores/states.js"
+const store = useStore();
 const showPassword = ref(false)
 const router = useRouter();
 const form = ref({

@@ -32,7 +32,7 @@
     "src": "public/fonts/altivo-ultra.otf"
   },
   "resources/css/app.css": {
-    "file": "assets/app-f6kaPYdp.css",
+    "file": "assets/app-BxKW1h_n.css",
     "isEntry": true,
     "src": "resources/css/app.css"
   },
@@ -40,7 +40,7 @@
     "css": [
       "assets/app-QEOiTbr4.css"
     ],
-    "file": "assets/app-4GzuTYYR.js",
+    "file": "assets/app-mCKUcd4C.js",
     "isEntry": true,
     "src": "resources/js/app.js"
   }

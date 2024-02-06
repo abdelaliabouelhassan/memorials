@@ -17,8 +17,12 @@ use App\Http\Controllers\Api\ProfilesController;
 |
 */
 
-Route::get('/test',function(){
-    return route('password.email');
+Route::get('/qrcode-status',function(){
+    $status = session('qrcode_status');
+    if($status == 'claimed'){
+        session()->forget('qrcode_status');
+    }
+    return response()->json($status,200);
 });
 
 Route::get('/google/callback',[LoginController::class,'handleGoogleCallback']);

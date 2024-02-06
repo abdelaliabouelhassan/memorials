@@ -245,9 +245,11 @@ class ProfilesController extends Controller
             $qrCode->user_id = auth()->id();
             $qrCode->save();
             session()->forget('qrcode');
+            session(['qrcode_status' => 'claimed']);
             return redirect('/');
         }else{
            session(['qrcode' => $code]);
+           session(['qrcode_status' => 'assigned']);
            return redirect('/login');
         }
        
