@@ -29,7 +29,7 @@
             </div>
         </div>
 
-      <Alert v-if="store.qrcode_claimed" message='Dein Seelenstein wurde erfolgreich hinzugefügt. Du kannst das Profil nun bearbeiten.'/>
+      <Alert v-if="store.qrcode_claimed" message='Dein Seelenstein wurde erfolgreich hinzugefügt. Klicke auf den Stift um das Profil zu bearbeiten.'/>
         <div class=" w-full" v-if="profiles.length == 0">
               <div role="alert"
                     class="relative flex w-full px-4 py-4 text-base text-gray-900 border border-gray-900 rounded-lg font-regular"
