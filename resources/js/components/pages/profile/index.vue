@@ -25,7 +25,7 @@
             </div>
             <div class=" flex flex-col items-start">
                 <span class=" text-primary text-xl font-medium font-Inter">{{store.user.email}}</span>
-                <span class=" text-primary font-Altivo text-lg font-normal">{{profiles.length}} SEELENSTEINE</span>
+                <span class=" text-primary font-Altivo text-lg font-normal">{{profiles.length}} SEELENSTEIN</span>
             </div>
         </div>
 
