@@ -1,5 +1,5 @@
 <template>
-    <div class=" w-full z-10 rounded-t-2xl  border-t border-white  absolute bottom-0 duration-300 transition-all backdrop-blur-xl ease-in-out" :class="{'h-3/4':open,' h-[6rem] ':!open}" >
+    <div class=" w-full z-10 rounded-t-2xl  border-t border-white  absolute bottom-0 duration-300 transition-all backdrop-blur-xl ease-in-out bg-black bg-opacity-40" :class="{'h-3/4':open,' h-[6rem] ':!open}" >
         <div class=" w-full  relative p-4">
             <button @click="openSheet" class=" w-full absolute -top-1 left-0 flex cursor-pointer">
                 <div class=" m-auto h-2 w-20 rounded-full bg-white"></div>
@@ -37,7 +37,7 @@
      <div class=" w-full h-full px-4" v-if="open">
        <div class=" w-full h-[70%] md:h-[80%] overflow-y-auto ">
          <div class=" w-full p-4 space-y-4" v-if="openType === 'details'">
-            <p class=" text-white text-lg font-Altivo font-normal break-words">
+            <p class=" text-white text-description-new text-lg font-Altivo font-extralight break-words">
                 {{profile.description}}
             </p>
              <p class=" text-white text-lg font-Altivo font-normal break-words">

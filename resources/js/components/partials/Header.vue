@@ -9,7 +9,7 @@
                 </router-link>
             </div>
            
-            <div class=" max-w-[14rem]">
+            <div class=" max-w-[12rem]">
                  <router-link to="/" class=" text-primary text-sm font-Altivo">
                    <img src="/images/LOGO_BLUE.png" class=" w-full object-cover" alt="logo blue" v-if="theme != 'dark'">
                    <img src="/images/LOGO_WHITE.png" class=" w-full object-cover" alt="logo white" v-else>
