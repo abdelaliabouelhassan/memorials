@@ -6,12 +6,12 @@
        <div class=" w-full absolute backdrop-blur-md  h-full z-50 left-0 " v-if="open">
           <div class=" w-full py-10 px-8 flex flex-col items-end space-y-2 justify-end text-primary text-2xl font-Altivo font-normal">
             <router-link to="/profile">MEIN KONTO</router-link>
-            <router-link to="/">KONTAKT</router-link>
-            <router-link to="/">HILFE</router-link>
-            <router-link to="/">SHOP</router-link>
+            <a href="https://seelenstein.de/pages/contact" target="_blank">KONTAKT</a>
+            <a  href="https://seelenstein.de/pages/hilfe" target="_blank">HILFE</a>
+            <a  href="https://seelenstein.de/products/der-seelenstein" target="_blank">SHOP</a>
             <div class=" pt-5 flex flex-col justify-end items-end">
-            <router-link to="/" class=" text-base">PRIVACY POLICY</router-link>
-            <router-link to="/" class=" text-base">IMPRINT</router-link>
+              <a  href="https://seelenstein.de/pages/datenschutz" target="_blank">Datenschutz</a>
+              <a  href="https://seelenstein.de/pages/impressum" target="_blank">Impressum</a>
             </div>
            
           </div>
