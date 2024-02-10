@@ -1,5 +1,6 @@
 <template>
   <MainLayouts :theme="showPasseord ? 'password' :'dark'" class="">
+   <meta name="theme-color" content="#000000">
    <div class=" w-full h-full " v-if="!isPrivate && !showPasseord">
      <div v-if="mediaIndexMax > 0">
         <img v-if="getFileType(media[mediaIndex].type) == 'image'" :src="media[mediaIndex].path" class="  w-full h-full object-cover absolute top-0 left-0 " alt="">

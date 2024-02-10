@@ -1,5 +1,5 @@
 <template>
-    <div class=" w-full z-10 rounded-t-2xl  border-t border-white  absolute bottom-0 duration-300 transition-all backdrop-blur-xl ease-in-out bg-black bg-opacity-40" :class="{'h-3/4':open,' h-[6rem] ':!open}" >
+    <div class=" w-full z-10 rounded-t-2xl  border-t border-white  absolute bottom-0 duration-300 transition-all backdrop-blur-xl ease-in-out bg-black bg-opacity-40" :class="{'h-3/4':open,' h-[5.5rem] ':!open}" >
         <div class=" w-full  relative p-4">
             <button @click="openSheet" class=" w-full absolute -top-1 left-0 flex cursor-pointer">
                 <div class=" m-auto h-2 w-20 rounded-full bg-white"></div>
@@ -10,7 +10,7 @@
                 </div>
                 <div class=" flex flex-col items-start -space-y-1">
                     <span class=" text-white uppercase font-Altivo text-xl font-medium">{{profile.fullname}}</span>
-                    <span class=" text-white font-Inter text-base">{{formatDate(profile.birthday)}} - {{formatDate(profile.death)}} ✟</span>
+                    <span class=" text-white font-extralight text-base">{{formatDate(profile.birthday)}} - {{formatDate(profile.death)}} ✟</span>
                 </div>
             </div>
 
@@ -35,9 +35,9 @@
         </div>
 
      <div class=" w-full h-full px-4" v-if="open">
-       <div class=" w-full h-[70%] md:h-[80%] overflow-y-auto ">
-         <div class=" w-full p-4 space-y-4" v-if="openType === 'details'">
-            <p class=" text-white text-description-new text-lg font-Altivo font-extralight break-words">
+       <div class=" w-full h-[65%] md:h-[80%] overflow-y-auto ">
+         <div class=" w-full p-3 space-y-4" v-if="openType === 'details'">
+            <p class=" text-white text-description-new text-base font-Altivo font-extralight break-words">
                 {{profile.description}}
             </p>
              <p class=" text-white text-lg font-Altivo font-normal break-words">

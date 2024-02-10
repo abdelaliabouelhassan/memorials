@@ -9,7 +9,7 @@
             <a href="https://seelenstein.de/pages/contact" target="_blank">KONTAKT</a>
             <a  href="https://seelenstein.de/pages/hilfe" target="_blank">HILFE</a>
             <a  href="https://seelenstein.de/products/der-seelenstein" target="_blank">SHOP</a>
-            <div class=" pt-5 flex flex-col justify-end items-end">
+            <div class=" pt-5 text-base flex flex-col justify-end items-end">
               <a  href="https://seelenstein.de/pages/datenschutz" target="_blank">Datenschutz</a>
               <a  href="https://seelenstein.de/pages/impressum" target="_blank">Impressum</a>
             </div>
